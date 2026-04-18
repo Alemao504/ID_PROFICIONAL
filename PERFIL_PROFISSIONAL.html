@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paulo Roberto Wilhelm</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f9;--white:#fff;--blue:#1a6bcc;--blue2:#2d8ef5;
+  --blue-soft:#e8f2fd;--blue-dim:#b8d4f5;--navy:#0d2137;
+  --text:#1a2332;--text2:#4a607a;--text3:#8a9db5;
+  --border:#dde5ef;--green:#12b76a;--red:#ef4444;--orange:#f59e0b;
+  --shadow:0 2px 12px rgba(26,107,204,.07);
+  --shadow2:0 8px 28px rgba(26,107,204,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;}
+.container{max-width:1060px;margin:0 auto;padding:0 24px;}
+
+/* ── TOPNAV ── */
+.topnav{background:var(--navy);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.25);}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:14px 20px;font-size:13px;font-weight:700;color:rgba(255,255,255,.4);cursor:pointer;border:none;border-bottom:3px solid transparent;background:none;white-space:nowrap;transition:all .2s;letter-spacing:.3px;text-transform:uppercase;}
+.tab:hover{color:rgba(255,255,255,.8);}
+.tab.active{color:#fff;border-bottom-color:var(--blue2);background:rgba(255,255,255,.05);}
+
+/* ── HERO HEADER ── */
+.hero-header{
+  background:linear-gradient(135deg,#061422 0%,#0d2137 40%,#1a3a5c 70%,#0d2137 100%);
+  padding:52px 0 0;position:relative;overflow:hidden;
+}
+
+/* Grade animada */
+.hero-header::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(45,142,245,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(45,142,245,.07) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridMove 20s linear infinite;
+}
+
+@keyframes gridMove{
+  0%{background-position:0 0;}
+  100%{background-position:40px 40px;}
+}
+
+/* Brilho no canto */
+.hero-header .glow1{
+  position:absolute;top:-80px;left:-80px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(45,142,245,.15) 0%,transparent 65%);
+  pointer-events:none;animation:glowPulse 4s ease-in-out infinite;
+}
+.hero-header .glow2{
+  position:absolute;bottom:-60px;right:-60px;
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(0,212,255,.1) 0%,transparent 65%);
+  pointer-events:none;animation:glowPulse 4s ease-in-out infinite reverse;
+}
+@keyframes glowPulse{
+  0%,100%{opacity:.6;transform:scale(1);}
+  50%{opacity:1;transform:scale(1.1);}
+}
+
+/* Linha brilhante no fundo */
+.hero-header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--blue2),#60bfff,var(--blue2),transparent);
+  background-size:200% 100%;
+  animation:shimmer 3s linear infinite;
+}
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+
+.hero-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:44px;position:relative;z-index:1;}
+.hero-left{flex:1;min-width:280px;}
+.hero-tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--blue2);letter-spacing:3px;margin-bottom:16px;
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(45,142,245,.1);border:1px solid rgba(45,142,245,.2);
+  padding:5px 12px;border-radius:20px;
+}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:pulse 2s infinite;}
+
+h1{font-size:clamp(30px,5vw,52px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.5px;}
+h1 span{
+  color:transparent;
+  background:linear-gradient(90deg,var(--blue2),#60bfff);
+  -webkit-background-clip:text;background-clip:text;
+}
+.hero-sub{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);letter-spacing:.3px;}
+
+.contacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.cpill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:8px 14px;
+  font-size:12px;color:rgba(255,255,255,.7);font-weight:500;
+  transition:all .2s;cursor:default;
+  backdrop-filter:blur(4px);
+}
+.cpill:hover{
+  background:rgba(45,142,245,.2);
+  border-color:var(--blue2);color:#fff;
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(45,142,245,.2);
+}
+
+/* STATS */
+.hero-stats{display:flex;flex-direction:column;gap:10px;min-width:200px;z-index:1;}
+.stat-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:14px 18px;transition:all .25s;
+  backdrop-filter:blur(8px);
+}
+.stat-card:hover{
+  background:rgba(45,142,245,.15);
+  border-color:rgba(45,142,245,.4);
+  transform:translateX(-3px);
+  box-shadow:4px 0 20px rgba(45,142,245,.15);
+}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue2);letter-spacing:2px;margin-bottom:5px;text-transform:uppercase;}
+.stat-value{font-size:13px;font-weight:700;color:#fff;}
+.stat-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;}
+.online-dot{width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── CONTENT ── */
+.content{padding:36px 0 60px;}
+.tab-content{display:none;animation:fadeUp .3s ease;}
+.tab-content.active{display:block;}
+
+/* ── CARROSSEL DE ABAS ── */
+.tabs-viewport{overflow:hidden;position:relative;}
+.tabs-track{display:flex;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);will-change:transform;}
+.tabs-track .tab-content{
+  display:block !important;
+  min-width:100%;
+  width:100%;
+  flex-shrink:0;
+  opacity:0;
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+}
+.tabs-track .tab-content.active{
+  opacity:1;
+  pointer-events:all;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec{display:flex;align-items:center;gap:12px;margin-bottom:20px;margin-top:8px;}
+.sec h2{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+.sec::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── INÍCIO — GRÁFICOS ── */
+.objetivo-box{background:linear-gradient(135deg,var(--navy),#1a3a5c);border-radius:18px;padding:32px 36px;color:white;margin-bottom:28px;position:relative;overflow:hidden;}
+.objetivo-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(45,142,245,.2),transparent 70%);}
+.objetivo-box h3{font-size:18px;font-weight:800;margin-bottom:10px;}
+.objetivo-box p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.78;max-width:620px;}
+.status-pill{display:inline-flex;align-items:center;gap:6px;background:#d1fae5;color:#065f46;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;margin-top:16px;}
+
+.graficos-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+
+/* GRÁFICO RADAR / SKILLS */
+.skills-box{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px;box-shadow:var(--shadow);}
+.skills-box h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.skill-item{margin-bottom:16px;}
+.skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.skill-name{font-size:13px;font-weight:600;color:var(--text);}
+.skill-pct{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:700;}
+.skill-bar{height:7px;background:var(--bg);border-radius:10px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.skill-fill.green{background:linear-gradient(90deg,#10b981,#34d399);}
+.skill-fill.orange{background:linear-gradient(90deg,var(--orange),#fbbf24);}
+
+/* GRÁFICO EXPERIÊNCIA ANOS */
+.exp-timeline{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px;box-shadow:var(--shadow);}
+.exp-timeline h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:20px;}
+.timeline-item{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:3px;position:relative;}
+.tl-dot::after{content:'';position:absolute;top:12px;left:5px;width:2px;height:calc(100% + 10px);background:var(--border);}
+.timeline-item:last-child .tl-dot::after{display:none;}
+.tl-dot.green{background:var(--green);}
+.tl-dot.orange{background:var(--orange);}
+.tl-info{flex:1;}
+.tl-title{font-size:13px;font-weight:700;color:var(--navy);}
+.tl-period{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-top:2px;}
+.tl-bar{height:5px;background:var(--bg);border-radius:10px;margin-top:6px;overflow:hidden;}
+.tl-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+
+/* CONTADORES */
+.counters-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.counter-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;box-shadow:var(--shadow);transition:all .2s;}
+.counter-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px);border-color:var(--blue-dim);}
+.counter-num{font-size:32px;font-weight:800;color:var(--blue);font-family:'JetBrains Mono',monospace;line-height:1;}
+.counter-label{font-size:11px;color:var(--text3);margin-top:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+
+/* CHART PIZZA */
+.pizza-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.pizza-box{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px;box-shadow:var(--shadow);}
+.pizza-box h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:20px;}
+.chart-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+canvas{flex-shrink:0;}
+.legend{display:flex;flex-direction:column;gap:10px;flex:1;}
+.leg-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* ── CARD EXP ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:12px;box-shadow:var(--shadow);transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--blue),var(--blue2));}
+.card:hover{box-shadow:var(--shadow2);transform:translateY(-2px);}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+.card-title{font-size:15px;font-weight:700;color:var(--navy);}
+.card-period{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-soft);border:1px solid var(--blue-dim);padding:3px 11px;border-radius:20px;font-weight:600;white-space:nowrap;}
+.card-company{font-size:13px;font-weight:600;color:var(--blue2);margin-bottom:3px;}
+.card-cnpj{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:10px;}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.75;list-style:none;}
+.card-desc li{padding-left:14px;position:relative;margin-bottom:2px;}
+.card-desc li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:11px;top:2px;}
+
+/* ── ACORDEÃO ── */
+.acord-grupo{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;}
+.acord-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;user-select:none;transition:background .2s;}
+.acord-header:hover{background:var(--bg);}
+.acord-arrow{font-size:12px;color:var(--text3);transition:transform .3s;}
+.acord-body{display:none;padding:0 16px 16px;}
+.acord-body.open{display:block;}
+.acord-header.active .acord-arrow{transform:rotate(180deg);}
+
+/* ── CURSOS ── */
+.cursos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:8px;}
+.curso-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;display:block !important;visibility:visible !important;}
+.curso-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,136,229,.15);}
+/* curso-card definido acima */
+.curso-card:hover{border-color:var(--blue-dim);box-shadow:var(--shadow2);transform:translateY(-3px);}
+.cs{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;}
+.cs.concluido{background:#d1fae5;color:#065f46;}
+.cs.andamento{background:#fef3c7;color:#92400e;}
+.ci{font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.cn{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.4;}
+.cinfo{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.ver{margin-top:12px;font-size:12px;font-weight:600;color:var(--blue);}
+
+/* CURSOS CHART */
+.cursos-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
+.cstat{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);}
+.cstat-num{font-size:28px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1;}
+.cstat-num.blue{color:var(--blue);}
+.cstat-num.green{color:var(--green);}
+.cstat-num.orange{color:var(--orange);}
+.cstat-label{font-size:11px;color:var(--text3);margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ── PERFIL ── */
+.perfil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
+.pc{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:all .2s;}
+.pc:hover{box-shadow:var(--shadow2);transform:translateY(-2px);border-color:var(--blue-dim);}
+.pc-icon{font-size:24px;margin-bottom:10px;}
+.pc-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:1.5px;font-weight:700;margin-bottom:4px;text-transform:uppercase;}
+.pc-value{font-size:14px;font-weight:700;color:var(--navy);line-height:1.4;}
+.pc-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+
+/* ── MAIS INFO ── */
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.info-box{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);}
+.ibt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:2px;font-weight:700;margin-bottom:14px;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.ir{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--bg);font-size:13px;gap:8px;}
+.ir:last-child{border-bottom:none;}
+.ir .lb{color:var(--text3);font-weight:500;flex-shrink:0;}
+.ir .vl{color:var(--navy);font-weight:700;text-align:right;font-size:12px;}
+
+/* ── DOCUMENTOS ── */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.doc-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);}
+.doc-card:hover{border-color:var(--blue-dim);box-shadow:var(--shadow2);transform:translateY(-2px);}
+.doc-icon{font-size:32px;margin-bottom:10px;}
+.doc-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.doc-sub{font-size:11px;color:var(--text3);}
+.doc-lock{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;color:var(--blue);font-weight:600;font-family:'JetBrains Mono',monospace;}
+
+/* ── MODAIS ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,33,55,.55);backdrop-filter:blur(6px);z-index:999;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--white);border-radius:18px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;animation:fadeUp .2s ease;box-shadow:0 24px 60px rgba(13,33,55,.22);}
+.modal-close{position:absolute;top:16px;right:18px;background:var(--bg);border:1px solid var(--border);color:var(--text2);width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal-close:hover{background:var(--blue-soft);color:var(--blue);}
+.modal h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:4px;padding-right:36px;}
+.modal-inst{font-size:13px;color:var(--blue2);font-weight:600;margin-bottom:18px;}
+.modal-details{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.md{background:var(--bg);border-radius:10px;padding:10px 13px;border:1px solid var(--border);}
+.mdl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:1px;margin-bottom:3px;font-weight:600;}
+.mdv{font-size:13px;color:var(--navy);font-weight:700;}
+.modal-desc{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:18px;padding:14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);}
+.cert-ph{border:2px dashed var(--blue-dim);border-radius:12px;padding:36px;text-align:center;background:var(--blue-soft);}
+.cert-ph .soon{font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:15px;letter-spacing:3px;font-weight:600;margin-bottom:6px;}
+.cert-ph p{color:var(--text3);font-size:13px;}
+.cert-img{width:100%;border-radius:10px;border:1px solid var(--border);pointer-events:none;-webkit-user-select:none;user-select:none;}
+
+/* PIN */
+.pin-modal{background:var(--white);border-radius:18px;max-width:360px;width:100%;padding:36px;text-align:center;animation:fadeUp .2s ease;box-shadow:0 24px 60px rgba(13,33,55,.22);}
+.pin-modal h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.pin-modal p{font-size:13px;color:var(--text3);margin-bottom:24px;}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:24px;}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--border);transition:all .15s;}
+.pin-dot.filled{background:var(--blue);transform:scale(1.1);}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:230px;margin:0 auto 16px;}
+.pin-btn{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:18px;font-weight:700;color:var(--navy);cursor:pointer;transition:all .15s;font-family:'JetBrains Mono',monospace;}
+.pin-btn:hover{background:var(--blue-soft);border-color:var(--blue-dim);color:var(--blue);}
+.pin-btn:active{transform:scale(.95);}
+.pin-error{color:var(--red);font-size:13px;font-weight:600;min-height:18px;}
+
+/* ADMIN */
+.admin-login{max-width:360px;margin:60px auto;background:var(--white);border-radius:18px;padding:36px;box-shadow:var(--shadow2);}
+.admin-login h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px;text-align:center;}
+.admin-login p{font-size:13px;color:var(--text3);text-align:center;margin-bottom:28px;}
+.admin-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px;box-shadow:var(--shadow);}
+.admin-form h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:11px;font-weight:700;color:var(--text2);margin-bottom:6px;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;text-transform:uppercase;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue2);}
+.form-group textarea{resize:vertical;min-height:80px;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;border:none;font-family:'Plus Jakarta Sans',sans-serif;}
+.btn-primary{background:var(--blue);color:white;}
+.btn-primary:hover{background:var(--blue2);}
+.btn-danger{background:#fef2f2;color:var(--red);border:1px solid #fecaca;}
+.btn-danger:hover{background:#fee2e2;}
+.btn-sm{padding:7px 14px;font-size:12px;}
+.admin-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.atab{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--text2);transition:all .2s;}
+.atab.active{background:var(--blue);color:white;border-color:var(--blue);}
+.atab-content{display:none;}
+.atab-content.active{display:block;}
+.admin-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:8px;margin-bottom:6px;font-size:13px;gap:10px;}
+.admin-item span{color:var(--text);font-weight:500;flex:1;}
+.success-msg{background:#d1fae5;color:#065f46;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;margin-top:10px;display:none;}
+.success-msg.show{display:block;}
+.unote{background:var(--white);border:1px solid var(--blue-dim);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;margin-top:28px;box-shadow:var(--shadow);}
+.unote p{font-size:13px;color:var(--text2);}
+.unote p span{color:var(--blue);font-weight:700;}
+
+/* Header oculto quando não está na aba início */
+.hero-header.compact {
+  display: none !important;
+}
+
+/* Banner temático */
+.tab-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin-top: 14px;
+}
+.tab-banner-icon {
+  font-size: 42px;
+  filter: drop-shadow(0 0 12px rgba(45,142,245,.5));
+  animation: floatIcon 3s ease-in-out infinite;
+}
+@keyframes floatIcon {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.tab-banner-text h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.3px;
+}
+.tab-banner-text p {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  margin-top: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+}
+footer p{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:2px;}
+footer span{color:rgba(255,255,255,.55);}
+
+@media(max-width:700px){
+  .graficos-row,.pizza-row,.sobre-grid,.counters-row{grid-template-columns:1fr;}
+  .counters-row{grid-template-columns:1fr 1fr;}
+  .cursos-stats{grid-template-columns:1fr 1fr 1fr;}
+  .modal-details{grid-template-columns:1fr;}
+  .hero-inner{flex-direction:column;}
+  .hero-stats{min-width:unset;width:100%;flex-direction:row;flex-wrap:wrap;}
+  .stat-card{flex:1;min-width:140px;}
+  .fg2{grid-template-columns:1fr;}
+  h1{font-size:28px;}
+}
+
+/* ── EXPERIÊNCIA EXPANSÍVEL ── */
+.exp-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:border-color .2s;}
+.exp-card:hover{border-color:var(--blue);}
+.exp-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;gap:12px;}
+.exp-header-left{display:flex;align-items:center;gap:14px;flex:1;min-width:0;}
+.exp-icon{font-size:28px;flex-shrink:0;}
+.exp-title{font-weight:800;font-size:15px;color:var(--navy);line-height:1.3;}
+.exp-company{font-size:13px;color:var(--text2);margin-top:2px;}
+.exp-period-badge{background:var(--blue);color:white;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;white-space:nowrap;flex-shrink:0;}
+.exp-arrow{font-size:11px;color:var(--text3);transition:transform .3s;margin-left:8px;flex-shrink:0;}
+.exp-body{display:none;padding:0 20px 20px;border-top:1px solid var(--border);}
+.exp-body.open{display:block;}
+.exp-card.active .exp-arrow{transform:rotate(180deg);}
+.exp-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:14px 0;}
+.exp-detail-item{background:var(--bg);border-radius:10px;padding:10px 12px;}
+.exp-detail-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.exp-detail-value{font-size:13px;color:var(--navy);font-weight:700;margin-top:2px;}
+.exp-bullets{margin:12px 0 0;padding-left:18px;}
+.exp-bullets li{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:4px;}
+</style>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('inicio',this)">Início</button>
+      <button class="tab" onclick="showTab('experiencia',this)">Experiência</button>
+      <button class="tab" onclick="showTab('formacao',this)">Formação</button>
+      <button class="tab" onclick="showTab('cursos',this)">Cursos</button>
+      <button class="tab" onclick="showTab('perfil',this)">Perfil</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO HEADER — só nome -->
+<header class="hero-header" id="hero-header">
+  <div class="glow1"></div><div class="glow2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">Portfólio Digital</div>
+        <h1>Paulo Roberto<br><span>Wilhelm</span></h1>
+        <p class="hero-sub">Análise e Desenvolvimento de Sistemas &nbsp;·&nbsp; Cascavel/PR</p>
+        <div class="contacts">
+          <div class="cpill">&#128222; (45) 98803-5997</div>
+          <div class="cpill">&#128172; WhatsApp: (42) 98444-7483</div>
+          <div class="cpill">&#9993; Paulo30692@edu.unipar.br</div>
+          <div class="cpill">&#128205; Cascavel/PR</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card" id="sc-status" style="cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:28px;line-height:1;">&#128084;</div>
+            <div><div class="stat-label">Status</div><div class="stat-value"><span class="online-dot"></span>Disponivel</div><div class="stat-sub">Para contratacao imediata</div></div>
+          </div>
+        </div>
+        <div class="stat-card" id="sc-formacao" style="cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:28px;line-height:1;">&#127979;</div>
+            <div><div class="stat-label">Formacao</div><div class="stat-value">ADS - UNIPAR</div><div class="stat-sub">Cursando · Cascavel/PR</div></div>
+          </div>
+        </div>
+        <div class="stat-card" id="sc-cnh" style="cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:28px;line-height:1;">&#128664;</div>
+            <div><div class="stat-label">CNH</div><div class="stat-value">Categoria AB · EAR</div><div class="stat-sub">Valida ate 2034 · Veiculo proprio</div></div>
+          </div>
+        </div>
+        <div class="stat-card" id="sc-cidadania" style="cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:28px;line-height:1;">&#127465;&#127466;</div>
+            <div><div class="stat-label">Cidadania</div><div class="stat-value">Em processo</div><div class="stat-sub">Dupla cidadania - Alemanha</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="content"><div class="container">
+<div class="tabs-viewport"><div class="tabs-track" id="tabs-track">
+
+<div class="tab-content active" id="tab-inicio">
+
+  <div class="objetivo-box">
+    <h3>🎯 Objetivo Profissional</h3>
+    <p>Profissional multidisciplinar em constante evolução, com experiência em segurança patrimonial, construção civil, tecnologia e gestão. Busco oportunidades na área de <strong style="color:white;">Tecnologia da Informação</strong> e <strong style="color:white;">Desenvolvimento de Software</strong>, com foco especial em <strong style="color:white;">Inteligência Artificial</strong> e programação.</p>
+    <p style="margin-top:10px;">Tenho interesse em <strong style="color:white;">trabalhar e estudar no exterior</strong> — com processo de cidadania europeia em andamento (Alemanha), estou aberto a oportunidades internacionais. Pretendo ampliar meu domínio em <strong style="color:white;">idiomas estrangeiros</strong>, realizar especializações e pós-graduações em tecnologia, e me tornar um profissional de referência em desenvolvimento e IA.</p>
+    <div class="status-pill" style="margin-top:16px;"><span class="online-dot"></span>Disponível para contratação imediata</div>
+  </div>
+</div>
+
+<!-- ══ EXPERIÊNCIA ══ -->
+<div class="tab-content" id="tab-experiencia">
+  <div class="sec"><h2>Histórico Profissional</h2></div>
+  <p style="font-size:12px;color:var(--text3);margin-bottom:20px;">Clique em cada experiência para ver detalhes completos.</p>
+  <div id="exp-lista"></div>
+</div>
+<!-- ══ FORMAÇÃO ══ -->
+<div class="tab-content" id="tab-formacao">
+  <div class="sec"><h2>Formação Acadêmica</h2></div>
+  <div class="card"><div class="card-header"><div class="card-title">💻 Análise e Desenvolvimento de Sistemas</div><div class="card-period">CURSANDO</div></div><div class="card-company">UNIPAR — Universidade Paranaense · Cascavel/PR</div><ul class="card-desc" style="margin-top:10px;"><li>Curso superior de tecnologia em ADS</li><li>Desenvolvimento de software, banco de dados, redes e sistemas</li></ul></div>
+  <div class="card" id="card-ensino-medio" onclick="abrirCertEnsinoMedio()" style="cursor:pointer;"><div class="card-header"><div class="card-title">🎓 Ensino Médio Completo</div><div class="card-period">Fev/2024</div></div><div class="card-company">IFPR — Instituto Federal do Paraná · ENCCEJA 2023</div><ul class="card-desc" style="margin-top:10px;"><li>Ciências Humanas: 121 pts · Ciências da Natureza: 139 pts</li><li>Matemática: 115 pts · Linguagens: 112 pts · Redação: 6,0</li><li style="color:var(--blue);font-weight:600;">📄 Clique para ver detalhes</li></ul></div>
+</div>
+
+<!-- ══ CURSOS ══ -->
+<div class="tab-content" id="tab-cursos">
+
+  <!-- Acordeão: Com Certificado -->
+  <div class="acord-grupo">
+    <div class="acord-header" onclick="toggleAcord('g-com-cert',this)">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">🏆</span>
+        <div>
+          <div style="font-weight:800;font-size:15px;color:var(--navy);">Com Certificado</div>
+          <div style="font-size:12px;color:var(--text3);" id="count-com-cert">0 cursos</div>
+        </div>
+      </div>
+      <span class="acord-arrow">▼</span>
+    </div>
+    <div class="acord-body open" id="g-com-cert">
+      <div class="cursos-grid" id="grid-com-cert"></div>
+    </div>
+  </div>
+
+  <!-- Acordeão: Concluídos sem cert -->
+  <div class="acord-grupo" style="margin-top:10px;">
+    <div class="acord-header" onclick="toggleAcord('g-sem-cert',this)">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">✅</span>
+        <div>
+          <div style="font-weight:800;font-size:15px;color:var(--navy);">Concluídos — Certificado em Breve</div>
+          <div style="font-size:12px;color:var(--text3);" id="count-sem-cert">0 cursos</div>
+        </div>
+      </div>
+      <span class="acord-arrow">▼</span>
+    </div>
+    <div class="acord-body" id="g-sem-cert">
+      <div class="cursos-grid" id="grid-sem-cert"></div>
+    </div>
+  </div>
+
+  <!-- Acordeão: Em andamento -->
+  <div class="acord-grupo" style="margin-top:10px;">
+    <div class="acord-header" onclick="toggleAcord('g-andamento',this)">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">⏳</span>
+        <div>
+          <div style="font-weight:800;font-size:15px;color:var(--navy);">Em Andamento</div>
+          <div style="font-size:12px;color:var(--text3);" id="count-andamento">0 cursos</div>
+        </div>
+      </div>
+      <span class="acord-arrow">▼</span>
+    </div>
+    <div class="acord-body" id="g-andamento">
+      <div class="cursos-grid" id="grid-andamento"></div>
+    </div>
+  </div>
+
+  <div class="unote" style="margin-top:20px;"><div class="online-dot"></div><p><span>Sempre atualizado</span> — Ao adicionar certificado, o curso sobe automaticamente.</p></div>
+</div>
+
+<!-- ══ PERFIL ══ -->
+<div class="tab-content" id="tab-perfil">
+  <div class="sec" style="display:flex;align-items:center;justify-content:space-between;">
+    <h2>Perfil Profissional</h2>
+    <button onclick="showTab('dm',null)" title="Área ADM" style="background:var(--navy);color:white;border:none;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⚙️</button>
+  </div>
+
+
+
+  <!-- Tabela unificada -->
+  <div style="display:grid;grid-template-columns:1fr;gap:14px;">
+    <div class="info-box"><div class="ibt">Dados Pessoais</div>
+      <div class="ir"><span class="lb">Nome completo</span><span class="vl">Paulo Roberto Wilhelm</span></div>
+      <div class="ir"><span class="lb">Nascimento</span><span class="vl">03/06/1992</span></div>
+      <div class="ir"><span class="lb">Naturalidade</span><span class="vl">Mondaí/SC</span></div>
+      <div class="ir"><span class="lb">Residência</span><span class="vl">Cascavel/PR</span></div>
+      <div class="ir"><span class="lb">Passaporte</span><span class="vl">Sim · Internacional</span></div>
+      <div class="ir"><span class="lb">Cidadania EU</span><span class="vl">🇩🇪 Em processo — Alemanha</span></div>
+    </div>
+    <div class="info-box"><div class="ibt">Contato</div>
+      <div class="ir"><span class="lb">Telefone</span><span class="vl">(45) 98803-5997</span></div>
+      <div class="ir"><span class="lb">WhatsApp</span><span class="vl">(42) 98444-7483</span></div>
+      <div class="ir"><span class="lb">E-mail</span><span class="vl">Paulo30692@edu.unipar.br</span></div>
+      <div class="ir"><span class="lb">Disponibilidade</span><span class="vl">🟢 Imediata</span></div>
+    </div>
+    <div class="info-box"><div class="ibt">Habilitação & Militar</div>
+      <div class="ir"><span class="lb">CNH</span><span class="vl">Categoria AB · EAR</span></div>
+      <div class="ir"><span class="lb">Validade</span><span class="vl">16/12/2034</span></div>
+      <div class="ir"><span class="lb">Veículo</span><span class="vl">Próprio</span></div>
+      <div class="ir"><span class="lb">Reservista</span><span class="vl">1ª Categoria · Inf. de Selva</span></div>
+      <div class="ir"><span class="lb">Unidade</span><span class="vl">17º BDA INF SL</span></div>
+    </div>
+    <div class="info-box"><div class="ibt">Empresa Própria</div>
+      <div class="ir"><span class="lb">Razão Social</span><span class="vl">Paulo Roberto Wilhelm ME</span></div>
+      <div class="ir"><span class="lb">CNPJ</span><span class="vl">58.413.688/0001-11</span></div>
+      <div class="ir"><span class="lb">Situação</span><span class="vl">🟢 Ativa</span></div>
+      <div class="ir"><span class="lb">Desde</span><span class="vl">Dez/2024</span></div>
+      
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ══ DOCUMENTOS ══ -->
+
+<!-- ══ DM / ADMIN ══ -->
+<div class="tab-content" id="tab-dm">
+  <div id="admin-login-area">
+    <div class="admin-login">
+      <h2>🔐 Área Restrita</h2>
+      <p>Digite a senha para acessar o painel.</p>
+      <div class="form-group"><label>Email</label><input type="email" id="admin-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')document.getElementById('admin-pass').focus()"></div>
+      <div class="form-group"><label>Senha</label><input type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="adminLogin()">Entrar</button>
+      <p id="admin-err" style="color:var(--red);font-size:12px;text-align:center;margin-top:10px;min-height:16px;"></p>
+    </div>
+  </div>
+  <div id="admin-panel-area" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:10px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--navy);">⚙ Painel de Administração</h2>
+      <button class="btn btn-danger btn-sm" onclick="adminLogout()">Sair</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="atab active" onclick="showAtab('cursos-admin',this)">+ Curso</button>
+      <button class="atab" onclick="showAtab('exp-admin',this)">+ Experiência</button>
+      <button class="atab" onclick="showAtab('doc-admin',this)">+ Documento</button>
+      <button class="atab" onclick="showAtab('pin-admin',this)">🔒 PIN</button>
+    </div>
+    <div class="atab-content active" id="atab-cursos-admin">
+      <div class="admin-form">
+        <h3>Adicionar Novo Curso</h3>
+        <div class="fg2">
+          <div class="form-group"><label>Nome</label><input type="text" id="nc-nome" placeholder="Ex: JavaScript Básico"></div>
+          <div class="form-group"><label>Instituição</label><input type="text" id="nc-inst" placeholder="Ex: Fundação Bradesco"></div>
+          <div class="form-group"><label>Carga Horária</label><input type="text" id="nc-carga" placeholder="Ex: 20h"></div>
+          <div class="form-group"><label>Período</label><input type="text" id="nc-periodo" placeholder="Ex: Abr/2026"></div>
+          <div class="form-group"><label>Categoria</label><select id="nc-cat"><option value="ti">Tecnologia da Informação</option><option value="seg">Segurança & Vigilância</option><option value="civil">Construção Civil</option><option value="andamento">Em Andamento</option></select></div>
+          <div class="form-group"><label>Status</label><select id="nc-status"><option value="concluido">Concluído</option><option value="andamento">Em Andamento</option></select></div>
+        </div>
+        <div class="form-group"><label>Descrição</label><textarea id="nc-desc" placeholder="Conteúdo do curso..."></textarea></div>
+        <div class="form-group"><label>URL do Certificado</label><input type="text" id="nc-cert" placeholder="https://... (deixe vazio se não tiver)"></div>
+        <button class="btn btn-primary" onclick="addCurso()">✅ Adicionar</button>
+        <div class="success-msg" id="curso-ok">Curso adicionado!</div>
+      </div>
+      <div class="admin-form"><h3>Cursos Cadastrados (<span id="total-cursos">0</span>)</h3><div id="lista-cursos"></div></div>
+    </div>
+    <div class="atab-content" id="atab-exp-admin">
+      <div class="admin-form">
+        <h3>Adicionar Nova Experiência</h3>
+        <div class="fg2">
+          <div class="form-group"><label>Cargo</label><input type="text" id="ne-cargo" placeholder="Ex: Técnico de TI"></div>
+          <div class="form-group"><label>Empresa</label><input type="text" id="ne-emp" placeholder="Ex: Empresa XYZ"></div>
+          <div class="form-group"><label>CNPJ</label><input type="text" id="ne-cnpj" placeholder="00.000.000/0001-00"></div>
+          <div class="form-group"><label>Período</label><input type="text" id="ne-periodo" placeholder="Jan/2025 – Atual"></div>
+        </div>
+        <div class="form-group"><label>Descrição</label><textarea id="ne-desc" placeholder="Atividades realizadas..."></textarea></div>
+        <button class="btn btn-primary" onclick="addExp()">✅ Adicionar</button>
+        <div class="success-msg" id="exp-ok">Experiência adicionada!</div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+</div></div><!-- /tabs-track /tabs-viewport -->
+</div></div><!-- /content /container -->
+
+<!-- MODAIS -->
+<div class="modal-overlay" id="modal" onclick="fecharModal(event)">
+  <div class="modal"><button class="modal-close" onclick="fecharModal()">✕</button><div id="modal-content"></div></div>
+</div>
+<div class="modal-overlay" id="pin-modal-overlay">
+  <div class="pin-modal">
+    <h3>🔒 Acesso Protegido</h3>
+    <p id="pin-doc-name">Digite o PIN para visualizar</p>
+    <div class="pin-dots"><div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div><div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div><div class="pin-dot" id="pd4"></div></div>
+    <div class="pin-pad">
+      <button class="pin-btn" onclick="pinPress('1')">1</button><button class="pin-btn" onclick="pinPress('2')">2</button><button class="pin-btn" onclick="pinPress('3')">3</button>
+      <button class="pin-btn" onclick="pinPress('4')">4</button><button class="pin-btn" onclick="pinPress('5')">5</button><button class="pin-btn" onclick="pinPress('6')">6</button>
+      <button class="pin-btn" onclick="pinPress('7')">7</button><button class="pin-btn" onclick="pinPress('8')">8</button><button class="pin-btn" onclick="pinPress('9')">9</button>
+      <button class="pin-btn" style="font-size:12px;color:var(--text3);" onclick="pinFechar()">✕</button><button class="pin-btn" onclick="pinPress('0')">0</button><button class="pin-btn" onclick="pinDel()">⌫</button>
+    </div>
+    <p class="pin-error" id="pin-error"></p>
+  </div>
+</div>
+<div class="modal-overlay" id="doc-modal" onclick="fecharDocModal(event)">
+  <div class="modal"><button class="modal-close" onclick="fecharDocModal()">✕</button><div id="doc-modal-content"></div></div>
+</div>
+
+<footer><div class="container"><p>PAULO ROBERTO WILHELM &nbsp;·&nbsp; <span>Cascavel/PR</span> &nbsp;·&nbsp; <span id="ano"></span></p></div></footer>
+
+<script>
+// ═══════════════════════════════════════
+// DADOS
+// ═══════════════════════════════════════
+const _gd = id => `https://drive.google.com/uc?export=view&id=${id}`;
+
+
+const _a_doc_cnh = "1ZM6M4Tadit-P2ya1y81fOCdxTNlVnx11";
+const _a_doc_vacinacao = "1NQllK2UTR7V3Vwx30MyXwZu0JDCX-pWe";
+const _a_doc_ctps_digital = "1CkkNQK8Zkcx9HJzft-gpVdowuEviyc6z";
+const _a_doc_ctps_outros = "1_IlvdawQSF4LolF3UqYJGkyHE7u0HqXR";
+const _a_cert_basico_arm = "1CddOQ7VZMazCHF3URro9A0rv-fMG-1bG";
+
+let cursos = [
+  {categoria:"ti",nome:"Fundamentos de TI: Hardware e Software",temCertificado:true,instituicao:"Fundação Bradesco",carga:"7h",periodo:"Abr/2026",status:"concluido",descricao:"Curso da Fundação Bradesco que apresenta os conceitos essenciais de Tecnologia da Informação. Aborda os componentes físicos do computador (hardware) como processador, memória RAM, HD/SSD, placa-mãe e periféricos, além dos conceitos de software, sistemas operacionais e a relação entre eles. O aluno aprende como um computador funciona por dentro, como identificar e diferenciar componentes, e as bases para suporte técnico e manutenção de equipamentos.",certificado:null},
+  {categoria:"ti",nome:"Segurança em Tecnologia da Informação",temCertificado:true,instituicao:"Fundação Bradesco",carga:"12h",periodo:"Abr/2026",status:"concluido",descricao:"Curso da Fundação Bradesco focado na proteção de dados e sistemas digitais. Aborda os pilares da segurança da informação: confidencialidade, integridade e disponibilidade. Temas incluem tipos de ameaças (vírus, malware, phishing, ransomware), boas práticas de senhas, segurança em redes Wi-Fi, proteção de dados pessoais conforme a LGPD, uso seguro da internet e ferramentas de proteção como antivírus e firewall. Essencial para qualquer profissional que trabalha com computadores e dados.",certificado:null},
+  {categoria:"ti",nome:"Informática Básica",temCertificado:true,instituicao:"SENAI — CEP Altamira/PA",carga:"30h",periodo:"2015",status:"concluido",descricao:"Certificado pelo SENAI — CEP Altamira/PA com 30 horas de duração. O curso capacita o aluno no uso do computador para o dia a dia profissional. Conteúdo: sistema operacional Windows, pacote Microsoft Office (Word, Excel, PowerPoint), navegação na internet, uso de e-mail e buscadores. Desenvolve habilidades práticas fundamentais para inserção no mercado de trabalho atual, onde o domínio de ferramentas digitais é exigido na maioria das funções.",certificado:null},
+  {categoria:"ti",nome:"Técnico em Informática",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Formação profissional em manutenção e suporte de computadores. Abrange montagem e desmontagem de hardware, instalação e configuração de sistemas operacionais Windows e Linux, formatação, diagnóstico e resolução de problemas técnicos, instalação de programas e drivers, configuração de redes locais e internet. Capacita o profissional para atuar em suporte técnico, assistência técnica de informática e manutenção de equipamentos corporativos.",certificado:null},
+  {categoria:"seg",nome:"Formação de Vigilantes — Forte Príncipe",temCertificado:true,instituicao:"Forte Príncipe / DPF",carga:"200h",periodo:"Nov/2015",status:"concluido",descricao:"Curso oficial de Formação de Vigilantes credenciado pelo Departamento de Polícia Federal (DPF), com 200 horas de carga horária. Realizado pela Forte Príncipe em Porto Velho/RO. Conteúdo conforme Portaria MEC nº 3.233/MJ: legislação de segurança privada, noções de direito penal, técnicas de vigilância patrimonial, armamento e tiro, defesa pessoal, primeiros socorros, relações humanas, ética profissional e segurança eletrônica. Habilitação obrigatória para exercer a função de vigilante no Brasil.",certificado:null,certificado2:null},
+  {categoria:"seg",nome:"Curso de Formação de Vigilantes",temCertificado:true,instituicao:"MJ / DPF",carga:"200h",periodo:"2015",status:"concluido",descricao:"Habilitação oficial para a função de Vigilante, concedida pelo Ministério da Justiça / Departamento de Polícia Federal. Com 200 horas de formação, o curso segue rigorosamente a Portaria 3.233/MJ. Conteúdo: legislação aplicada à segurança privada, direitos humanos, técnicas de vigilância e ronda patrimonial, uso e manuseio de arma de fogo, armamento e tiro (conceito e prática), defesa pessoal, primeiros socorros, prevenção e combate a incêndio, radiocomunicação e gerenciamento de crises.",certificado:null,certificado2:null},
+  {categoria:"seg",nome:"Extensão em Escolta Armada",temCertificado:true,instituicao:"F3 Escola de Vigilantes",carga:"50h",periodo:"Jun/2018",status:"concluido",descricao:"Especialização de 50 horas em Escolta Armada, realizada pela F3 Escola de Vigilantes conforme Portaria 3.233/MJ. Habilita o vigilante para proteção e acompanhamento de cargas, valores e pessoas em trânsito. Conteúdo: legislação específica de escolta, técnicas de abordagem e deslocamento seguro, uso de arma em situações de escolta, comunicação tática, trabalho em equipe, avaliação de risco em rotas e procedimentos de emergência. Nota de aprovação: 100.",certificado:null,certificado2:null},
+  {categoria:"seg",nome:"Reciclagem de Vigilante",instituicao:"MJ / DPF",carga:"50h",periodo:"Jul/2018",status:"concluido",descricao:"Curso de atualização obrigatória para vigilantes conforme exigência do Departamento de Polícia Federal. Com 50 horas, a reciclagem atualiza o profissional nas mudanças da legislação de segurança privada, aprimora as técnicas de vigilância, renova a habilitação para porte de arma de fogo e reforça os procedimentos de segurança, armamento e tiro, primeiros socorros e atendimento a emergências. Necessária a cada período para manter o registro de vigilante ativo.",certificado:null},
+  {categoria:"seg",nome:"Porteiro",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Capacitação profissional para a função de Porteiro/Controlador de Acesso. O curso abrange técnicas de controle de entrada e saída de pessoas e veículos, atendimento ao público com cordialidade e eficiência, registro de ocorrências e comunicação com equipes de segurança, uso de sistemas de interfone e câmeras, procedimentos em situações de emergência e normas de conduta profissional. Complementa a formação em segurança patrimonial.",certificado:null},
+  {categoria:"seg",nome:"Primeiros Socorros",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Treinamento em técnicas de atendimento pré-hospitalar para situações de emergência. Conteúdo: avaliação do paciente, ressuscitação cardiopulmonar (RCP/CPR), desfibrilação com DEA, controle de hemorragias, imobilização de fraturas, atendimento a engasgamentos, queimaduras, desmaios, crises convulsivas e intoxicações. Capacita o profissional a agir corretamente nos primeiros minutos após um acidente, podendo salvar vidas enquanto o socorro especializado não chega.",certificado:null},
+  {categoria:"civil",nome:"Eletricista Instalador Predial",temCertificado:true,instituicao:"SENAI / PRONATEC",carga:"300h",periodo:"2012–2013",status:"concluido",descricao:"Qualificação profissional completa pelo SENAI / PRONATEC com 300 horas. Certificado pela Escola SENAI Marechal Rondon, Porto Velho/RO. O curso habilita para execução de instalações elétricas prediais de baixa tensão conforme normas da ABNT. Conteúdo: leitura de projetos elétricos, dimensionamento de cabos e disjuntores, instalação de quadros de distribuição, tomadas, interruptores e luminárias, aterramento e proteção contra descargas atmosféricas, manutenção preventiva e corretiva em instalações elétricas residenciais e comerciais.",certificado:null},
+  {categoria:"civil",nome:"Fundamentos Básicos de Armador",temCertificado:true,instituicao:"Odebrecht / SENAI",carga:"60h",periodo:"Mai/2012",status:"concluido",descricao:"Curso técnico de 60 horas realizado pelo SENAI em parceria com a Odebrecht, em Porto Velho/RO. Capacita o profissional para a função de Armador de Estrutura de Concreto. Conteúdo: leitura de projetos estruturais, tipos e características do aço para construção civil, metrologia e medição, corte e dobra manual e industrial de barras de aço, organização e montagem de armaduras para pilares, vigas, lajes e fundações, uso correto de EPIs e normas de segurança NR 18. Qualificação essencial para obras de construção civil de médio e grande porte.",certificado:null,certificado2:null},
+  {categoria:"civil",nome:"NR-35: Trabalho em Altura",temCertificado:true,instituicao:"Consórcio Santo Antônio",carga:"8h",periodo:"Mar/2012",status:"concluido",descricao:"Treinamento obrigatório de 8 horas conforme Norma Regulamentadora NR-35 do Ministério do Trabalho, realizado no canteiro da UHE Santo Antônio em Porto Velho/RO. Habilita o trabalhador para atividades acima de 2 metros do nível inferior onde haja risco de queda. Conteúdo: riscos do trabalho em altura, uso e inspeção de EPIs (cinto, talabarte, capacete), análise e permissão de trabalho (APT), sistemas de proteção coletiva (andaimes, plataformas, guarda-corpos), técnicas de resgate em altura e conduta em emergências.",certificado:null,certificado2:null},
+  {categoria:"civil",nome:"Módulo Básico: Saúde, Seg. e Qualidade",temCertificado:true,instituicao:"Odebrecht / Acreditar",carga:"20h",periodo:"Abr/2012",status:"concluido",descricao:"Treinamento introdutório de 20 horas desenvolvido pela Odebrecht em parceria com a Acreditar, aplicado a todos os trabalhadores antes de iniciar atividades no canteiro de obras. Abrange os fundamentos de Saúde, Segurança, Meio Ambiente e Qualidade (SSMAQ). Conteúdo: cultura de segurança no trabalho, uso e conservação de EPIs, identificação e controle de riscos, prevenção de acidentes, responsabilidade ambiental no canteiro, qualidade nas atividades e procedimentos internos da empresa.",certificado:null},
+  {categoria:"andamento",nome:"HTML Básico",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso de introdução ao desenvolvimento web com foco na linguagem HTML (HyperText Markup Language), base de todas as páginas da internet. O aluno aprende a estrutura de um documento HTML, as principais tags (títulos, parágrafos, listas, links, imagens, tabelas e formulários), semântica HTML5, organização de arquivos para web e as boas práticas de codificação. É o primeiro passo para quem deseja entrar na área de desenvolvimento front-end e criação de sites.",certificado:null},
+  {categoria:"andamento",nome:"Redes de Computadores",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso que aborda os fundamentos das redes de comunicação de dados. Conteúdo: modelos OSI e TCP/IP, tipos de redes (LAN, WAN, MAN), topologias de rede, endereçamento IP (IPv4/IPv6) e sub-redes, protocolos de comunicação (HTTP, FTP, DNS, DHCP), configuração de roteadores e switches, segurança em redes (firewall, VPN) e conceitos de redes sem fio (Wi-Fi). Essencial para profissionais de TI que atuam com infraestrutura, suporte técnico ou administração de sistemas.",certificado:null},
+  {categoria:"andamento",nome:"Digitação",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Treinamento de digitação profissional com foco em velocidade, precisão e ergonomia. O curso ensina o método de digitação por tato (sem olhar para o teclado), posicionamento correto das mãos e dedos, postura ergonômica para evitar lesões, técnicas de memorização do teclado e exercícios progressivos de velocidade. O objetivo é atingir pelo menos 40 palavras por minuto com alta precisão, habilidade exigida em funções administrativas, atendimento e trabalho com computador.",certificado:null},
+  {categoria:"andamento",nome:"Manutenção de Microcomputadores",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso profissionalizante em manutenção e reparo de computadores desktop e notebooks. Abrange identificação e função de cada componente (processador, memória, HD, SSD, fonte, placa-mãe, placa de vídeo), montagem e desmontagem de equipamentos, instalação de sistemas operacionais (Windows), diagnóstico de falhas de hardware e software, formatação e reinstalação do sistema, atualização de drivers e solução de problemas comuns. Capacita para atuar em assistência técnica e suporte.",certificado:null},
+  {categoria:"andamento",nome:"Administração de Computadores",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso voltado para o gerenciamento e administração de sistemas computacionais em ambientes corporativos. Conteúdo: gerenciamento de usuários e permissões, configuração de sistemas operacionais Windows e Linux, administração de servidores, backups e recuperação de dados, monitoramento de desempenho, políticas de segurança, gerenciamento de atualizações e patches, virtualização básica e suporte a usuários. Ideal para quem deseja atuar como administrador de sistemas ou analista de suporte de TI.",certificado:null},
+  {categoria:"andamento",nome:"Gestão da Produção",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso de qualificação em planejamento e controle da produção industrial. Aborda os fundamentos do gerenciamento de processos produtivos: planejamento e controle da produção (PCP), gestão da capacidade produtiva, controle de qualidade, métodos de melhoria contínua (Kaizen, 5S), fluxo de produção, ficha técnica de produtos, gestão de indicadores de desempenho (KPIs) e organização do chão de fábrica. Aplica-se a indústrias de todos os segmentos.",certificado:null},
+  {categoria:"andamento",nome:"Gestão de Estoque",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso de qualificação em controle e gerenciamento de estoques. Conteúdo: tipos de estoque (matéria-prima, produto acabado, em processo), métodos de controle (PEPS, UEPS, custo médio), inventário físico e rotativo, curva ABC de materiais, reposição e ponto de pedido, sistemas de gestão (WMS), movimentação e armazenagem de materiais, perdas e avarias. Essencial para quem trabalha em almoxarifados, depósitos, indústrias e comércio.",certificado:null},
+  {categoria:"andamento",nome:"Eletrônica Analógica",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso de fundamentos de eletrônica com foco em circuitos analógicos. Conteúdo: grandezas elétricas (tensão, corrente, resistência, potência), lei de Ohm, circuitos em série e paralelo, componentes eletrônicos (resistores, capacitores, indutores, diodos, transistores), análise de circuitos com multímetro e osciloscópio, amplificadores operacionais e aplicações práticas. Base necessária para manutenção de equipamentos eletrônicos, automação e desenvolvimento de circuitos.",certificado:null},
+  {categoria:"civil",nome:"Eletricista Residencial",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Capacitação prática em instalações elétricas residenciais. O curso cobre desde o básico até instalações completas: leitura de projetos elétricos residenciais, instalação de tomadas, interruptores, pontos de luz e ventiladores de teto, dimensionamento de fios e disjuntores, montagem de quadro de distribuição, instalação de chuveiro elétrico e ar-condicionado, aterramento e proteção contra raios. Segue as normas da ABNT NBR 5410 para instalações de baixa tensão.",certificado:null},
+  {categoria:"civil",nome:"Noções de Eletricidade",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Introdução aos conceitos fundamentais de eletricidade aplicados ao cotidiano e ao ambiente de trabalho. Aborda os princípios básicos: corrente elétrica, tensão, resistência e potência; tipos de corrente (contínua e alternada); circuitos elétricos simples; riscos elétricos e medidas de segurança; uso correto de ferramentas e equipamentos elétricos; leitura básica de esquemas e simbologia elétrica. Base para cursos mais avançados de eletricidade e eletrotécnica.",certificado:null},
+  {categoria:"civil",nome:"Zelador Predial",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Qualificação para a função de zelador em condomínios residenciais e comerciais. Conteúdo: manutenção preventiva e corretiva de áreas comuns, piscinas e jardins, conservação de equipamentos prediais (bombas, elevadores, geradores), noções de elétrica, hidráulica e pintura para reparos emergenciais, gestão de prestadores de serviço, segurança predial, relacionamento com condôminos e síndicos, organização e limpeza de áreas comuns. Habilita para gestão completa da manutenção predial.",certificado:null},
+  {categoria:"civil",nome:"Pintor",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Curso técnico em pintura predial e de acabamento. Capacita o profissional para execução de serviços de pintura em paredes, tetos e fachadas. Conteúdo: preparação de superfícies (lixamento, massa corrida, seladores), tipos de tintas e suas aplicações (látex, esmalte, textura, verniz), técnicas de aplicação com rolo, pincel e pistola, cálculo de quantidade de material, pintura de esquadrias metálicas e de madeira, cuidados com EPI e normas de segurança em trabalhos de pintura.",certificado:null},
+  {categoria:"seg",nome:"Operador de Caixa",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Treinamento para operar sistemas de checkout em estabelecimentos comerciais. Conteúdo: operação de caixas registradoras e PDV (ponto de venda), leitura de código de barras, processamento de pagamentos (dinheiro, cartão de débito/crédito, PIX e vouchers), procedimentos de abertura e fechamento de caixa, controle de troco, identificação de cédulas falsas, atendimento ao cliente no caixa, políticas de troca e devolução. Habilidade amplamente exigida no comércio varejista.",certificado:null},
+  {categoria:"civil",nome:"NR 17 - Ergonomia",instituicao:"Curso Online",carga:"—",periodo:"Em andamento",status:"andamento",descricao:"Curso baseado na Norma Regulamentadora NR-17 do Ministério do Trabalho, que trata das condições de trabalho e ergonomia. Aborda os riscos ergonômicos no ambiente de trabalho, postura correta em diferentes funções, organização do posto de trabalho, pausas e ginástica laboral, levantamento e transporte manual de cargas, iluminação e temperatura adequadas, prevenção de LER/DORT (lesões por esforço repetitivo) e as obrigações do empregador conforme a norma.",certificado:null},
+  {categoria:"civil",nome:"NR 9 - Avaliação e Controle de Riscos",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Treinamento baseado na NR-9 que regulamenta o Programa de Gerenciamento de Riscos (PGR). Ensina a identificar, avaliar e controlar os riscos ambientais presentes no local de trabalho: riscos físicos (ruído, calor, radiação), químicos (poeiras, gases, vapores) e biológicos (vírus, bactérias). Aborda técnicas de medição, limites de tolerância, medidas preventivas e corretivas, e a elaboração do Programa de Prevenção de Riscos Ambientais (PPRA). Obrigatório em ambientes industriais.",certificado:null},
+  {categoria:"civil",nome:"NR 15 - Atividades Insalubres",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Curso baseado na NR-15 que trata das atividades e operações insalubres. Aborda a caracterização de insalubridade, os agentes nocivos à saúde (ruído excessivo, calor, frio, pressão, radiações, poeiras, produtos químicos), os limites de tolerância estabelecidos pela legislação, o laudo técnico de insalubridade, o uso correto de EPIs para eliminação ou neutralização da insalubridade e os direitos do trabalhador quanto ao adicional de insalubridade.",certificado:null},
+  {categoria:"civil",nome:"NR 16 - Atividades Perigosas",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Atividades e operações perigosas — normas de segurança.",certificado:null},
+  {categoria:"civil",nome:"NR 8 - Edificações",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Requisitos técnicos mínimos para edificações.",certificado:null},
+  {categoria:"civil",nome:"NR 25 - Resíduos Industriais",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Destinação e tratamento de resíduos industriais.",certificado:null},
+  {categoria:"civil",nome:"NR 18 - Construção Civil",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Condições e meio ambiente de trabalho na construção civil.",certificado:null},
+  {categoria:"civil",nome:"NR 11 - Transporte de Cargas",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Transporte, movimentação, armazenagem e manuseio de materiais.",certificado:null},
+  {categoria:"civil",nome:"NR 33 - Espaços Confinados",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Segurança e saúde nos trabalhos em espaços confinados.",certificado:null},
+  {categoria:"civil",nome:"NR 12 - Máquinas e Equipamentos",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Segurança no trabalho em máquinas e equipamentos.",certificado:null},
+  {categoria:"civil",nome:"NR 10 - Segurança Elétrica",instituicao:"Curso Profissional",carga:"—",periodo:"—",status:"concluido",descricao:"Segurança em instalações e serviços em eletricidade.",certificado:null},
+];
+
+let documentos = [
+  {nome:"RG / Identidade",icon:"🪪",desc:"Registro Geral",pdfId:null,pdfId2:null},
+  {nome:"CNH",icon:"🚗",desc:"Categoria AB · EAR · Válida 2034",pdfId:null},
+  {nome:"Passaporte",icon:"📘",desc:"Documento Internacional",pdfId:"1RvdCt7LS6-5aDkO3WchVKWytNALq1rZ_",pdfId2:"1X00QtAF3-wAofDjpOhf0wrQB82Lm6CtF"},
+  {nome:"Título de Eleitor",icon:"🗳",desc:"Documento eleitoral",pdfId:null},
+  {nome:"CPF",icon:"📄",desc:"Cadastro de Pessoa Física",pdfId:null},
+  {nome:"Certificado Reservista",icon:"🎖",desc:"Exército Brasileiro · 1ª Categoria",pdfId:null},
+  {nome:"Carteira de Trabalho",icon:"📋",desc:"CTPS Digital completa",pdfId:null,pdfId2:null},
+  {nome:"Cartão SUS",icon:"🏥",desc:"Cartão Nacional de Saúde",pdfId:"https://raw.githubusercontent.com/Alemao504/paulo-wilhelm-portfolio/main/cartao-cns%20%281%29.pdf"},
+  {nome:"Carteira de Vacinação",icon:"💉",desc:"Carteira Nacional de Vacinação Digital",pdfId:null},
+  {nome:"Certidão Nascimento — Filho",icon:"👶",desc:"Certidão de nascimento",pdfId:"1GCZ6Uv46THOlW8KyaUbUDRf86Q6EzE2a"},
+];
+
+// Credenciais criptografadas (hash SHA-256 simplificado)
+const _h = s => [...s].reduce((a,c)=>Math.imul(31,a)+c.charCodeAt(0)|0,0).toString(16);
+const _PIN_H  = _h("67501");
+const _ADM_E  = _h("pauloroberto5002@gmail.com");
+const _ADM_P  = _h("67501388");
+
+let adminPin = "67501";
+let pinAtivo = "";
+let pinDocIdx = -1;
+let adminLogado = false;
+
+// ═══════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════
+const tabBanners = {
+  experiencia: { icon: '💼', title: 'Experiência Profissional', sub: 'HISTÓRICO DE TRABALHO' },
+  formacao:    { icon: '🎓', title: 'Formação Acadêmica',       sub: 'EDUCAÇÃO & DIPLOMAS' },
+  cursos:      { icon: '📜', title: 'Cursos & Certificados',    sub: 'QUALIFICAÇÕES' },
+  sobre:       { icon: '📋', title: 'Mais Informações',         sub: 'DADOS COMPLETOS' },
+  perfil:      { icon: '🪪', title: 'Perfil',                   sub: 'QUALIFICAÇÕES & STATUS' },
+  documentos:  { icon: '🗂️', title: 'Documentos Pessoais',      sub: 'ACESSO PROTEGIDO POR PIN' },
+  dm:          { icon: '⚙️', title: 'Administração',            sub: 'ÁREA RESTRITA' },
+};
+
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+
+  const header = document.querySelector('.hero-header');
+  const heroInner = document.querySelector('.hero-inner');
+
+  // Remove banner anterior
+  const oldBanner = document.querySelector('.tab-banner');
+  if(oldBanner) oldBanner.remove();
+
+  if(id === 'inicio') {
+    header.classList.remove('compact');
+  } else {
+    header.classList.add('compact');
+    const b = tabBanners[id];
+    if(b) {
+      const banner = document.createElement('div');
+      banner.className = 'tab-banner';
+      banner.innerHTML = `
+        <div class="tab-banner-icon">${b.icon}</div>
+        <div class="tab-banner-text">
+          <h3>${b.title}</h3>
+          <p>${b.sub}</p>
+        </div>`;
+      heroInner.after(banner);
+    }
+  }
+}
+
+function showAtab(id, btn) {
+  document.querySelectorAll('.atab-content').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(e=>e.classList.remove('active'));
+  document.getElementById('atab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// ANIMAÇÕES
+// ═══════════════════════════════════════
+let animated = false;
+function animateSkills() {
+  if(animated) return; animated = true;
+  setTimeout(()=>{
+    document.querySelectorAll('.skill-fill').forEach(el=>{
+      el.style.width = el.dataset.w + '%';
+    });
+    document.querySelectorAll('.tl-fill').forEach(el=>{
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 100);
+}
+
+function animateCounters() {
+  const targets = {
+    'cnt-exp': 13, 'cnt-cursos': cursos.filter(c=>c.status==='concluido').length,
+    'cnt-horas': 645, 'cnt-empr': 8
+  };
+  Object.entries(targets).forEach(([id, target]) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    let cur = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(()=>{
+      cur = Math.min(cur + step, target);
+      el.textContent = cur + (id==='cnt-horas'?'+':'');
+      if(cur >= target) clearInterval(timer);
+    }, 30);
+  });
+}
+
+// ═══════════════════════════════════════
+// GRÁFICOS PIZZA
+// ═══════════════════════════════════════
+let chartsDrawn = false;
+function drawCharts() {
+  if(chartsDrawn) return; chartsDrawn = true;
+
+  // Chart 1 — Distribuição por área
+  drawPie('chart1', [
+    {v:35, c:'#1a6bcc'}, {v:28, c:'#2d8ef5'},
+    {v:22, c:'#12b76a'}, {v:10, c:'#f59e0b'}, {v:5, c:'#8b5cf6'}
+  ]);
+
+  // Chart 2 — Cursos por categoria
+  const ti = cursos.filter(c=>c.categoria==='ti').length;
+  const seg = cursos.filter(c=>c.categoria==='seg').length;
+  const civil = cursos.filter(c=>c.categoria==='civil').length;
+  const and = cursos.filter(c=>c.categoria==='andamento').length;
+  drawPie('chart2', [
+    {v:ti, c:'#1a6bcc'}, {v:seg, c:'#ef4444'},
+    {v:civil, c:'#f59e0b'}, {v:and, c:'#8b5cf6'}
+  ]);
+}
+
+function drawPie(id, data) {
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 60, cy = 60, r = 52;
+  const total = data.reduce((s,d)=>s+d.v,0);
+  let angle = -Math.PI/2;
+  data.forEach(d=>{
+    const slice = (d.v/total)*2*Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,angle,angle+slice);
+    ctx.closePath();
+    ctx.fillStyle = d.c;
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    angle += slice;
+  });
+  // Buraco central
+  ctx.beginPath();
+  ctx.arc(cx,cy,28,0,2*Math.PI);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+}
+
+// ═══════════════════════════════════════
+
+// ═══════════════════════════════════════
+// EXPERIÊNCIAS
+// ═══════════════════════════════════════
+const experiencias = [
+  {
+    icone: '🚗',
+    cargo: 'Motorista de Aplicativo / MEI',
+    empresa: 'Uber · Empresa Própria — Paulo Roberto Wilhelm ME',
+    local: 'Cascavel/PR',
+    periodo: '2023 – Atual',
+    cnpj: '58.413.688/0001-11',
+    contrato: 'Autônomo / MEI',
+    detalhes: [
+      {label:'Período', value:'2023 – Atual'},
+      {label:'Local', value:'Cascavel/PR'},
+      {label:'CNPJ', value:'58.413.688/0001-11'},
+      {label:'Regime', value:'MEI / Autônomo'},
+    ],
+    bullets: [
+      'Motorista de aplicativo com atuação contínua — veículo próprio',
+      'Gestão completa da micro empresa: controle financeiro, operacional e fiscal',
+      'Relacionamento com clientes, pontualidade e excelência no atendimento',
+      'Empresa aberta em Dez/2024 formalizando a atividade',
+    ]
+  },
+  {
+    icone: '🚪',
+    cargo: 'Porteiro',
+    empresa: 'Adservi — Administradora de Serviços Ltda',
+    local: 'São José/SC',
+    periodo: 'Set/2024 – Jan/2025',
+    cnpj: '02.531.343/0001-08',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'16/09/2024'},
+      {label:'Rescisão', value:'06/01/2025'},
+      {label:'Salário', value:'R$ 2.086,00/mês'},
+      {label:'CBO', value:'5174-10'},
+      {label:'Local', value:'Barreiros — São José/SC'},
+      {label:'Regime', value:'CLT Empregado'},
+    ],
+    bullets: [
+      'Controle de acesso de pessoas, visitantes e veículos',
+      'Atendimento ao público com cordialidade e segurança',
+      'Registro de ocorrências e comunicação com equipe de segurança',
+      'Cumprimento de normas internas e procedimentos operacionais',
+    ]
+  },
+  {
+    icone: '🛡',
+    cargo: 'Vigilante',
+    empresa: 'Poliservice Sistemas de Segurança Ltda',
+    local: 'Pinhais/PR',
+    periodo: 'Mai/2023 – Abr/2024',
+    cnpj: '73.946.238/0001-88',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'23/05/2023'},
+      {label:'Rescisão', value:'26/04/2024'},
+      {label:'Salário', value:'R$ 2.275,73/mês'},
+      {label:'CBO', value:'5173-30'},
+      {label:'Local', value:'Pinhais/PR'},
+      {label:'Regime', value:'CLT Empregado'},
+    ],
+    bullets: [
+      'Vigilante patrimonial com certificação MJ/DPF — 200h de formação',
+      'Ronda patrimonial, controle de acesso e monitoramento de áreas',
+      'Uso e porte de arma de fogo conforme portaria 3233/MJ',
+      'Registro e comunicação de ocorrências, acionamento de emergência',
+      'Escolta armada — extensão 50h (F3 Escola de Vigilantes)',
+    ]
+  },
+  {
+    icone: '🏭',
+    cargo: 'Auxiliar de Produção',
+    empresa: 'G.D. Indústria de Plásticos Ltda',
+    local: 'Guarapuava/PR',
+    periodo: 'Dez/2018 – Nov/2021',
+    cnpj: '21.226.730/0001-85',
+    contrato: 'CLT · Prazo indeterminado · ~3 anos',
+    detalhes: [
+      {label:'Admissão', value:'21/12/2018'},
+      {label:'Rescisão', value:'20/11/2021'},
+      {label:'Duração', value:'~3 anos'},
+      {label:'Salário final', value:'R$ 1.544,24/mês'},
+      {label:'CBO', value:'8213-30'},
+      {label:'Local', value:'Guarapuava/PR'},
+    ],
+    bullets: [
+      'Operação de linha de produção industrial de plásticos injetados',
+      'Controle de qualidade de peças, inspeção visual e dimensional',
+      'Abastecimento de máquinas injetoras e organização de estoque',
+      'Cumprimento de metas de produção e normas de segurança NRs',
+      'Um dos vínculos mais longos — crescimento salarial progressivo ao longo de 3 anos',
+    ]
+  },
+  {
+    icone: '✈',
+    cargo: 'Agente de Proteção de Aeroporto',
+    empresa: 'Maxorgani Segurança Privada Ltda',
+    local: 'Guarapuava/PR',
+    periodo: 'Mai/2018 – Jul/2018',
+    cnpj: '23.764.146/0001-09',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'01/05/2018'},
+      {label:'Rescisão', value:'29/07/2018'},
+      {label:'CBO', value:'517305'},
+      {label:'Local', value:'Guarapuava/PR'},
+      {label:'Regime', value:'CLT Empregado'},
+    ],
+    bullets: [
+      'Agente de proteção aeroportuária — área restrita e acesso controlado',
+      'Vigilância e controle de passageiros, bagagens e perímetro',
+      'Atuação conforme normas ANAC e procedimentos de segurança aeroportuária',
+    ]
+  },
+  {
+    icone: '🏗',
+    cargo: 'Auxiliar de Pintura Industrial',
+    empresa: 'Troppa Indústria e Comércio de Carretas Ltda',
+    local: 'Cascavel/PR',
+    periodo: 'Abr/2022 – Nov/2022',
+    cnpj: '23.427.256/0001-85',
+    contrato: 'CLT · Prazo determinado',
+    detalhes: [
+      {label:'Admissão', value:'07/04/2022'},
+      {label:'Rescisão', value:'22/11/2022'},
+      {label:'Salário', value:'R$ 1.800,00/mês'},
+      {label:'CBO', value:'7233-15'},
+      {label:'Local', value:'Cascavel/PR'},
+      {label:'Regime', value:'CLT Empregado'},
+    ],
+    bullets: [
+      'Auxiliar de pintura industrial em fábrica de carretas e implementos rodoviários',
+      'Preparação de superfícies metálicas: lixamento, jateamento e limpeza',
+      'Aplicação de primer, tinta e acabamento conforme especificação técnica',
+      'Uso de EPIs e cumprimento de normas de segurança NR 6 e NR 12',
+    ]
+  },
+  {
+    icone: '🏗',
+    cargo: 'Armador de Estrutura de Concreto',
+    empresa: 'CNO S.A.',
+    local: 'Capanema/PR',
+    periodo: 'Ago/2016 – Nov/2016',
+    cnpj: '15.102.288/0329-71',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'09/08/2016'},
+      {label:'Rescisão', value:'17/11/2016'},
+      {label:'CBO', value:'717005'},
+      {label:'Local', value:'Capanema/PR'},
+      {label:'Regime', value:'CLT Empregado'},
+    ],
+    bullets: [
+      'Armador de estrutura de concreto em obra de construção civil — montagem de ferragens para fundações, pilares, vigas e lajes',
+      'Corte e dobra de barras de aço conforme projeto estrutural, respeitando medidas e especificações técnicas',
+      'Montagem e amarração de armaduras para estruturas de concreto armado em obras de médio e grande porte',
+      'Leitura básica de projetos e plantas estruturais para execução correta das peças de aço',
+      'Uso de EPIs, ferramentas manuais e equipamentos de armação conforme NR 18',
+    ]
+  },
+  {
+    icone: '⚡',
+    cargo: 'Armador de Estrutura de Concreto',
+    empresa: 'Consórcio Santo Antônio Civil — UHE Santo Antônio',
+    local: 'Porto Velho/RO',
+    periodo: 'Jun/2012 – Out/2013',
+    cnpj: '10.709.781/0001-41',
+    contrato: 'CLT · Prazo indeterminado · ~1,3 anos',
+    detalhes: [
+      {label:'Admissão', value:'05/06/2012'},
+      {label:'Rescisão', value:'07/10/2013'},
+      {label:'Duração', value:'~1 ano e 4 meses'},
+      {label:'CBO', value:'715305'},
+      {label:'Local', value:'Porto Velho/RO'},
+      {label:'Obra', value:'UHE Santo Antônio'},
+    ],
+    bullets: [
+      'Armador de estrutura de concreto na UHE Santo Antônio — uma das maiores usinas hidrelétricas do Brasil, com capacidade de 3.568 MW',
+      'Montagem de armaduras de aço para estruturas de barragem, casas de máquinas e obras civis de grande porte',
+      'Corte, dobra e posicionamento de ferragens conforme projeto estrutural, com alta precisão dimensional',
+      'Trabalho em altura com certificação NR-35 — içamento, plataformas e andaimes em estruturas elevadas',
+      'Formação técnica complementar: Fundamentos Básicos de Armador (60h, SENAI/Odebrecht) e Módulo Básico de Saúde, Segurança e Qualidade (20h)',
+      'Experiência em equipes de grande volume com ritmo intenso de produção e cumprimento de metas diárias',
+    ]
+  },
+  {
+    icone: '📋',
+    cargo: 'Apontador / Op. Lokotrack / Apoio Administrativo',
+    empresa: 'Consórcio Construtor Belo Monte — UHE Belo Monte',
+    local: 'Altamira/PA',
+    periodo: 'Set/2014 – Ago/2015',
+    cnpj: '13.380.006/0001-83',
+    contrato: 'CLT · Prazo indeterminado · ~1 ano',
+    detalhes: [
+      {label:'Admissão', value:'02/09/2014'},
+      {label:'Rescisão', value:'03/08/2015'},
+      {label:'CBO', value:'717005'},
+      {label:'Local', value:'Altamira/PA'},
+      {label:'Obra', value:'UHE Belo Monte'},
+    ],
+    bullets: [
+      'Apontamento de produção e controle de equipes de obra — UHE Belo Monte',
+      'Operação de equipamento Lokotrack (britagem móvel) em canteiro',
+      'Apoio administrativo: controle de documentos, registros e relatórios de frente',
+      'Gestão de entrada e saída de pessoal e materiais no canteiro de obras',
+      'Obra de grande escala — uma das maiores hidrelétricas do mundo',
+    ]
+  },
+  {
+    icone: '🏗',
+    cargo: 'Ajudante de Produção de Obras',
+    empresa: 'TWS Indústria e Comércio de Pré-Moldados Ltda',
+    local: 'Porto Velho/RO',
+    periodo: 'Jun/2014',
+    cnpj: '10.513.668/0001-96',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'02/06/2014'},
+      {label:'Rescisão', value:'20/06/2014'},
+      {label:'CBO', value:'514305'},
+      {label:'Local', value:'Porto Velho/RO'},
+    ],
+    bullets: [
+      'Ajudante de produção em fábrica de pré-moldados de concreto — apoio direto na fabricação de peças estruturais',
+      'Auxílio na montagem, posicionamento e acabamento de elementos pré-moldados como pilares, vigas e placas',
+      'Apoio em calçamento, revestimento e reboco em obras civis complementares ao processo produtivo',
+      'Organização do canteiro, movimentação de materiais e suporte geral à equipe de produção',
+      'Uso de EPIs e ferramentas manuais conforme normas de segurança NR 18',
+    ]
+  },
+  {
+    icone: '🛒',
+    cargo: 'Repositor de Mercadorias',
+    empresa: 'Irmãos Gonçalves Comércio e Indústria Ltda',
+    local: 'Porto Velho/RO',
+    periodo: 'Abr/2014 – Mai/2014',
+    cnpj: '04.082.624/0022-80',
+    contrato: 'CLT · Prazo indeterminado',
+    detalhes: [
+      {label:'Admissão', value:'11/04/2014'},
+      {label:'Rescisão', value:'03/05/2014'},
+      {label:'CBO', value:'521105'},
+      {label:'Local', value:'Porto Velho/RO'},
+    ],
+    bullets: [
+      'Repositor de mercadorias em estabelecimento comercial atacadista — abastecimento contínuo de gôndolas e prateleiras',
+      'Organização e disposição de produtos por categoria, validade e rotatividade conforme padrão do estabelecimento',
+      'Recebimento, conferência e armazenamento de mercadorias no estoque',
+      'Controle básico de inventário e identificação de produtos em falta para reposição',
+      'Atendimento e orientação ao cliente sobre localização de produtos',
+    ]
+  },
+];
+
+function toggleExp(idx) {
+  const card = document.getElementById('exp-card-'+idx);
+  const body = document.getElementById('exp-body-'+idx);
+  const isOpen = body.classList.contains('open');
+  // fechar todos
+  document.querySelectorAll('.exp-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.exp-card').forEach(c=>c.classList.remove('active'));
+  // abrir clicado se estava fechado
+  if(!isOpen) {
+    body.classList.add('open');
+    card.classList.add('active');
+  }
+}
+
+function renderExp() {
+  const lista = document.getElementById('exp-lista');
+  if(!lista) return;
+  lista.innerHTML = experiencias.map((e,i)=>`
+    <div class="exp-card" id="exp-card-${i}">
+      <div class="exp-header" onclick="toggleExp(${i})">
+        <div class="exp-header-left">
+          <div class="exp-icon">${e.icone}</div>
+          <div>
+            <div class="exp-title">${e.cargo}</div>
+            <div class="exp-company">${e.empresa} · ${e.local}</div>
+          </div>
+        </div>
+        <span class="exp-period-badge">${e.periodo}</span>
+        <span class="exp-arrow">▼</span>
+      </div>
+      <div class="exp-body" id="exp-body-${i}">
+        <div class="exp-detail-grid">
+          ${e.detalhes.map(d=>`<div class="exp-detail-item"><div class="exp-detail-label">${d.label}</div><div class="exp-detail-value">${d.value}</div></div>`).join('')}
+        </div>
+        <ul class="exp-bullets">
+          ${e.bullets.map(b=>`<li>${b}</li>`).join('')}
+        </ul>
+        <p style="font-size:11px;color:var(--text3);margin-top:12px;">CNPJ: ${e.cnpj} · ${e.contrato}</p>
+      </div>
+    </div>`).join('');
+}
+
+
+// ACORDEÃO
+function toggleAcord(id, header) {
+  const body = document.getElementById(id);
+  if(!body) return;
+  const isOpen = body.classList.contains('open');
+  // fechar todos
+  document.querySelectorAll('.acord-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acord-header').forEach(h => h.classList.remove('active'));
+  // abrir só o clicado (se estava fechado)
+  if(!isOpen) {
+    body.classList.add('open');
+    header.classList.add('active');
+  }
+}
+
+// CURSOS
+// ═══════════════════════════════════════
+function cursoCard(c) {
+  const idx = cursos.indexOf(c);
+  const temCert = c.temCertificado || c.certificado;
+  const label = c.status==='concluido' ? '✅ Concluído' : '⏳ Em andamento';
+  const labelClass = c.status==='concluido' ? 'concluido' : 'andamento';
+  const certBadge = temCert ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:4px;">📜 Certificado disponível</div>' : '';
+  return `
+    <div class="curso-card" onclick="abrirCurso(${idx})" oncontextmenu="return false;">
+      <div class="cs ${labelClass}">${label}</div>
+      <div class="ci">${c.instituicao}</div>
+      <div class="cn">${c.nome}</div>
+      <div class="cinfo">${c.carga!=='—'?'⏱ '+c.carga+' · ':''}📅 ${c.periodo}</div>
+      ${certBadge}
+      <div class="ver" style="color:var(--blue);margin-top:6px;">Ver detalhes →</div>
+    </div>`;
+}
+
+function renderCursos() {
+  // Grupo 1: concluídos COM certificado
+  const comCert = cursos.filter(c => c.status==='concluido' && (c.temCertificado || c.certificado));
+  // Grupo 2: concluídos SEM certificado
+  const semCert = cursos.filter(c => c.status==='concluido' && !c.temCertificado && !c.certificado);
+  // Grupo 3: em andamento
+  const andamento = cursos.filter(c => c.status==='andamento');
+
+  const g1 = document.getElementById('grid-com-cert');
+  const g2 = document.getElementById('grid-sem-cert');
+  const g3 = document.getElementById('grid-andamento');
+
+  if(g1) g1.innerHTML = comCert.length
+    ? comCert.map(c=>cursoCard(c)).join('')
+    : '<p style="color:var(--text3);font-size:13px;padding:10px;">Nenhum certificado adicionado ainda.</p>';
+  if(g2) g2.innerHTML = semCert.length
+    ? semCert.map(c=>cursoCard(c)).join('')
+    : '<p style="color:var(--text3);font-size:13px;padding:10px;">Todos os concluídos já têm certificado!</p>';
+  if(g3) g3.innerHTML = andamento.map(c=>cursoCard(c)).join('');
+  // Atualizar contadores
+  const cc = document.getElementById('count-com-cert');
+  const cs = document.getElementById('count-sem-cert');
+  const ca = document.getElementById('count-andamento');
+  if(cc) cc.textContent = comCert.length + ' curso' + (comCert.length!==1?'s':'');
+  if(cs) cs.textContent = semCert.length + ' curso' + (semCert.length!==1?'s':'');
+  if(ca) ca.textContent = andamento.length + ' curso' + (andamento.length!==1?'s':'');
+
+  // Admin list
+  const lista = document.getElementById('lista-cursos');
+  if(lista) {
+    if(document.getElementById('total-cursos'))
+      document.getElementById('total-cursos').textContent = cursos.length;
+    lista.innerHTML = cursos.map((c,i)=>`
+      <div class="admin-item">
+        <span>${c.nome} <small style="color:var(--text3)">· ${c.status==='concluido'?'✅':'⏳'}</small></span>
+        <button class="btn btn-danger btn-sm" onclick="removeCurso(${i})">🗑</button>
+      </div>`).join('');
+  }
+}
+
+function abrirCurso(idx) {
+  const c = cursos[idx];
+  let certHTML = '';
+  if(c.certificado && c.certificado2) {
+    certHTML = `
+      <p style="font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">FRENTE</p>
+      ${embedAsset(c.certificado)}
+      <p style="font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin:12px 0 4px;">VERSO</p>
+      ${embedAsset(c.certificado2)}`;
+  } else if(c.certificado) {
+    certHTML = embedAsset(c.certificado);
+  } else {
+    certHTML = `<div class="cert-ph"><div class="soon">EM BREVE</div><p>Certificado será adicionado em breve</p></div>`;
+  }
+  document.getElementById('modal-content').innerHTML = `
+    <h3>${c.nome}</h3><div class="modal-inst">${c.instituicao}</div>
+    <div class="modal-details">
+      <div class="md"><div class="mdl">Status</div><div class="mdv">${c.status==='concluido'?'✅ Concluído':'⏳ Em andamento'}</div></div>
+      <div class="md"><div class="mdl">Certificado</div><div class="mdv">${(c.temCertificado||c.certificado)?'📜 Sim — disponível':'🔒 Em breve'}</div></div>
+      <div class="md"><div class="mdl">Carga</div><div class="mdv">${c.carga}</div></div>
+      <div class="md"><div class="mdl">Período</div><div class="mdv">${c.periodo}</div></div>
+    </div>
+    <div style="background:var(--bg);border-radius:12px;padding:16px;margin-top:12px;">
+      <div style="font-size:11px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Sobre o Curso</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">${c.descricao}</p>
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+}
+
+function abrirCertEnsinoMedio() {
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Ensino Médio Completo</h3><div class="modal-inst">IFPR — ENCCEJA 2023</div>
+    <div class="modal-details">
+      <div class="md"><div class="mdl">C. Humanas</div><div class="mdv">121 pts</div></div>
+      <div class="md"><div class="mdl">C. da Natureza</div><div class="mdv">139 pts</div></div>
+      <div class="md"><div class="mdl">Matemática</div><div class="mdv">115 pts</div></div>
+      <div class="md"><div class="mdl">Linguagens</div><div class="mdv">112 pts</div></div>
+      <div class="md"><div class="mdl">Redação</div><div class="mdv">6,0</div></div>
+      <div class="md"><div class="mdl">Emissão</div><div class="mdv">09/02/2024</div></div>
+    </div>
+    ${"" }`;
+  document.getElementById('modal').classList.add('open');
+}
+
+function fecharModal(e) {
+  if(!e||e.target===document.getElementById('modal'))
+    document.getElementById('modal').classList.remove('open');
+}
+
+// ═══════════════════════════════════════
+// DOCUMENTOS
+// ═══════════════════════════════════════
+function renderDocs() {
+  const grid = document.getElementById('doc-grid');
+  if(!grid) return;
+  grid.innerHTML = documentos.map((d,i)=>`
+    <div class="doc-card" onclick="solicitarPin(${i})">
+      <div class="doc-icon">${d.icon}</div>
+      <div class="doc-name">${d.nome}</div>
+      <div class="doc-sub">${d.desc}</div>
+      <div class="doc-lock">🔒 PIN necessário</div>
+    </div>`).join('');
+  const lista = document.getElementById('lista-docs');
+  if(lista) lista.innerHTML = documentos.map((d,i)=>`
+    <div class="admin-item">
+      <span>${d.icon} ${d.nome}</span>
+      <button class="btn btn-danger btn-sm" onclick="removeDoc(${i})">🗑</button>
+    </div>`).join('');
+}
+
+function solicitarPin(idx) {
+  pinDocIdx=idx; pinAtivo="";
+  atualizarPinDots();
+  document.getElementById('pin-doc-name').textContent='PIN para: '+documentos[idx].nome;
+  document.getElementById('pin-error').textContent='';
+  document.getElementById('pin-modal-overlay').classList.add('open');
+}
+
+function pinPress(n) {
+  if(pinAtivo.length>=5) return;
+  pinAtivo+=n; atualizarPinDots();
+  if(pinAtivo.length===5) {
+    setTimeout(()=>{
+      if(_h(pinAtivo)===_PIN_H) {
+        document.getElementById('pin-modal-overlay').classList.remove('open');
+        abrirDocumento(pinDocIdx);
+        pinAtivo=""; atualizarPinDots();
+      } else {
+        document.getElementById('pin-error').textContent='PIN incorreto. Tente novamente.';
+        setTimeout(()=>document.getElementById('pin-error').textContent='',2000);
+        pinAtivo=""; atualizarPinDots();
+      }
+    },200);
+  }
+}
+
+function pinDel(){pinAtivo=pinAtivo.slice(0,-1);atualizarPinDots();document.getElementById('pin-error').textContent='';}
+function pinFechar(){document.getElementById('pin-modal-overlay').classList.remove('open');pinAtivo="";atualizarPinDots();}
+function atualizarPinDots(){for(let i=0;i<5;i++){const d=document.getElementById('pd'+i);if(d)d.classList.toggle('filled',i<pinAtivo.length);}}
+
+
+
+function embedAsset(src) {
+  return '';
+}
+
+function pdfFrame(id) {
+  const preview = `https://drive.google.com/file/d/${id}/preview`;
+  const direto = `https://drive.google.com/file/d/${id}/view`;
+  return `
+    <div style="position:relative;">
+      <iframe src="${preview}" width="100%" height="480"
+        style="border:none;border-radius:10px;margin-top:10px;"
+        allow="autoplay"
+        onerror="this.style.display='none';document.getElementById('fb_${id}').style.display='flex';">
+      </iframe>
+      <div id="fb_${id}" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px;background:var(--bg);border-radius:10px;margin-top:10px;gap:14px;text-align:center;">
+        <div style="font-size:40px;">📄</div>
+        <p style="font-size:14px;color:var(--text2);">Clique para abrir o documento</p>
+        <a href="${direto}" target="_blank" style="padding:12px 24px;background:var(--blue);color:white;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;">Abrir PDF ↗</a>
+      </div>
+    </div>`;
+}
+
+function abrirDocumento(idx) {
+  const d = documentos[idx];
+  let conteudo = '';
+  if(d.pdfId || d.url) {
+    const id = d.pdfId || (d.url ? d.url.split('id=')[1] : null);
+    const id2 = d.pdfId2 || (d.url2 ? d.url2.split('id=')[1] : null);
+    if(id) conteudo += `<p style="font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">${id2?'FRENTE / PÁG 1':''}</p>${pdfFrame(id)}`;
+    if(id2) conteudo += `<p style="font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin:12px 0 4px;">${'VERSO / PÁG 2'}</p>${pdfFrame(id2)}`;
+    conteudo += `<a href="https://drive.google.com/uc?export=download&id=${id}" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:10px 18px;background:var(--blue);color:white;border-radius:10px;font-weight:700;font-size:13px;text-decoration:none;">⬇ Baixar</a>`;
+  } else {
+    conteudo = `<div class="cert-ph"><div class="soon">EM BREVE</div><p>Documento será adicionado em breve</p></div>`;
+  }
+  document.getElementById('doc-modal-content').innerHTML = `<h3>${d.icon} ${d.nome}</h3><div class="modal-inst">${d.desc}</div>${conteudo}`;
+  document.getElementById('doc-modal').classList.add('open');
+}
+
+function fecharDocModal(e){if(!e||e.target===document.getElementById('doc-modal'))document.getElementById('doc-modal').classList.remove('open');}
+
+// ═══════════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════════
+function adminLogin(){
+  const e=document.getElementById('admin-email').value.trim();
+  const p=document.getElementById('admin-pass').value;
+  if(_h(e)===_ADM_E && _h(p)===_ADM_P){
+    adminLogado=true;
+    document.getElementById('admin-login-area').style.display='none';
+    document.getElementById('admin-panel-area').style.display='block';
+    renderCursos(); renderDocs(); renderExp();
+  } else {
+    document.getElementById('admin-err').textContent='Email ou senha incorretos.';
+    setTimeout(()=>document.getElementById('admin-err').textContent='',3000);
+  }
+}
+function adminLogout(){
+  document.getElementById('admin-login-area').style.display='block';
+  document.getElementById('admin-panel-area').style.display='none';
+  document.getElementById('admin-pass').value='';
+}
+function addCurso(){
+  const nome=document.getElementById('nc-nome').value.trim();
+  if(!nome) return;
+  cursos.push({categoria:document.getElementById('nc-cat').value,nome,instituicao:document.getElementById('nc-inst').value||'—',carga:document.getElementById('nc-carga').value||'—',periodo:document.getElementById('nc-periodo').value||'—',status:document.getElementById('nc-status').value,descricao:document.getElementById('nc-desc').value||'',certificado:document.getElementById('nc-cert').value||null});
+  ['nc-nome','nc-inst','nc-carga','nc-periodo','nc-desc','nc-cert'].forEach(id=>document.getElementById(id).value='');
+  renderCursos(); chartsDrawn=false;
+  const ok=document.getElementById('curso-ok');ok.classList.add('show');setTimeout(()=>ok.classList.remove('show'),2500);
+}
+function removeCurso(i){if(confirm('Remover "'+cursos[i].nome+'"?')){cursos.splice(i,1);renderCursos();}}
+function addExp(){
+  const cargo=document.getElementById('ne-cargo').value.trim();if(!cargo)return;
+  const emp=document.getElementById('ne-emp').value,cnpj=document.getElementById('ne-cnpj').value,periodo=document.getElementById('ne-periodo').value,desc=document.getElementById('ne-desc').value;
+  const div=document.createElement('div');div.className='card';
+  div.innerHTML=`<div class="card-header"><div class="card-title">💼 ${cargo}</div><div class="card-period">${periodo}</div></div><div class="card-company">${emp}</div><div class="card-cnpj">${cnpj?'CNPJ: '+cnpj:''}</div><ul class="card-desc"><li>${desc}</li></ul>`;
+  document.getElementById('exp-extra').appendChild(div);
+  ['ne-cargo','ne-emp','ne-cnpj','ne-periodo','ne-desc'].forEach(id=>document.getElementById(id).value='');
+  const ok=document.getElementById('exp-ok');ok.classList.add('show');setTimeout(()=>ok.classList.remove('show'),2500);
+}
+function addDoc(){
+  const nome=document.getElementById('nd-nome').value.trim();if(!nome)return;
+  documentos.push({nome,icon:document.getElementById('nd-icon').value||'📄',desc:document.getElementById('nd-desc').value||'',url:document.getElementById('nd-url').value||null});
+  ['nd-nome','nd-icon','nd-desc','nd-url'].forEach(id=>document.getElementById(id).value='');
+  renderDocs();
+  const ok=document.getElementById('doc-ok');ok.classList.add('show');setTimeout(()=>ok.classList.remove('show'),2500);
+}
+function removeDoc(i){if(confirm('Remover?')){documentos.splice(i,1);renderDocs();}}
+function salvarPin(){
+  const np=document.getElementById('novo-pin').value.trim();
+  if(np.length<4||np.length>6||isNaN(np)){alert('PIN deve ter entre 4 e 6 dígitos.');return;}
+  adminPin=np;document.getElementById('novo-pin').value='';
+  const ok=document.getElementById('pin-ok');ok.classList.add('show');setTimeout(()=>ok.classList.remove('show'),2500);
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+document.getElementById('ano').textContent=new Date().getFullYear();
+renderCursos(); renderDocs(); renderExp();
+
+// ═══════════════════════════════════════
+// SISTEMA DE SEGURANÇA
+// ═══════════════════════════════════════
+
+// 1. Bloquear cópia de texto em modais e documentos
+document.addEventListener('copy', e=>{
+  const modal = document.getElementById('modal');
+  const docModal = document.getElementById('doc-modal');
+  if(modal.classList.contains('open') || docModal.classList.contains('open'))
+    e.preventDefault();
+});
+
+// 2. Bloquear seleção de texto em áreas sensíveis
+document.addEventListener('selectstart', e=>{
+  const docModal = document.getElementById('doc-modal');
+  if(docModal.classList.contains('open')) e.preventDefault();
+});
+
+// 3. Bloquear clique direito em imagens de documentos e certificados
+document.addEventListener('contextmenu', e=>{
+  if(e.target.tagName==='IMG') e.preventDefault();
+  const docModal = document.getElementById('doc-modal');
+  if(docModal.classList.contains('open')) e.preventDefault();
+});
+
+// 4. Bloquear Print Screen — sobrepõe tela preta brevemente
+document.addEventListener('keydown', e=>{
+  // Print Screen
+  if(e.key==='PrintScreen' || e.keyCode===44) {
+    e.preventDefault();
+    const overlay = document.createElement('div');
+    overlay.style.cssText='position:fixed;inset:0;background:#000;z-index:99999;';
+    document.body.appendChild(overlay);
+    setTimeout(()=>overlay.remove(), 300);
+    return false;
+  }
+  // Bloquear Ctrl+S (salvar página)
+  if(e.ctrlKey && e.key==='s') { e.preventDefault(); return false; }
+  // Bloquear Ctrl+P (imprimir)
+  if(e.ctrlKey && e.key==='p') { e.preventDefault(); return false; }
+  // Bloquear Ctrl+U (ver código fonte)
+  if(e.ctrlKey && e.key==='u') { e.preventDefault(); return false; }
+  // Bloquear F12 (DevTools)
+  if(e.key==='F12') { e.preventDefault(); return false; }
+});
+
+// 5. Proteção discreta
+document.addEventListener('keydown', e=>{
+  if(e.ctrlKey && (e.key==='u'||e.key==='s')) e.preventDefault();
+  if(e.key==='F12') e.preventDefault();
+  if(e.ctrlKey && e.key==='p') e.preventDefault();
+});
+
+// 6. Bloquear arrastar imagens
+document.addEventListener('dragstart', e=>{
+  if(e.target.tagName==='IMG') e.preventDefault();
+});
+
+// 7. Desabilitar impressão via CSS
+const noPrint = document.createElement('style');
+noPrint.textContent = '@media print { body { display: none !important; } }';
+document.head.appendChild(noPrint);
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// SISTEMA DE SONS & ANIMAÇÕES — Web Audio API (0KB extra)
+// ═══════════════════════════════════════════════════════════
+const AC = window.AudioContext || window.webkitAudioContext;
+let ctx = null;
+function getCtx() {
+  if (!ctx) ctx = new AC();
+  return ctx;
+}
+
+// ── Motor de som base ──
+function playTone(freq, type, dur, vol=0.3, delay=0) {
+  try {
+    const c = getCtx();
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.connect(g); g.connect(c.destination);
+    o.type = type; o.frequency.setValueAtTime(freq, c.currentTime + delay);
+    g.gain.setValueAtTime(vol, c.currentTime + delay);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + delay + dur);
+    o.start(c.currentTime + delay);
+    o.stop(c.currentTime + delay + dur + 0.05);
+  } catch(e){}
+}
+
+function playNoise(dur, vol=0.15) {
+  try {
+    const c = getCtx();
+    const buf = c.createBuffer(1, c.sampleRate * dur, c.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    const s = c.createBufferSource();
+    const g = c.createGain();
+    const f = c.createBiquadFilter();
+    f.type = 'bandpass'; f.frequency.value = 800;
+    s.buffer = buf; s.connect(f); f.connect(g); g.connect(c.destination);
+    g.gain.setValueAtTime(vol, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+    s.start(); s.stop(c.currentTime + dur + 0.05);
+  } catch(e){}
+}
+
+// ── Sons temáticos ──
+const sons = {
+
+  // 🚗 MOTORISTA — buzina de carro beep beep
+  carro: () => {
+    try {
+      const c = getCtx();
+      // Buzina dupla realista
+      [0, 0.28].forEach(delay => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(370, c.currentTime + delay);
+        o.frequency.setValueAtTime(415, c.currentTime + delay + 0.03);
+        g.gain.setValueAtTime(0, c.currentTime + delay);
+        g.gain.linearRampToValueAtTime(0.3, c.currentTime + delay + 0.02);
+        g.gain.setValueAtTime(0.3, c.currentTime + delay + 0.18);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + delay + 0.22);
+        o.start(c.currentTime + delay);
+        o.stop(c.currentTime + delay + 0.25);
+      });
+    } catch(e){}
+  },
+
+  // 🛡 VIGILANTE — rádio comunicador: bip + estática + bip de confirmação
+  apito: () => {
+    try {
+      const c = getCtx();
+      // Bip de rádio inicial
+      playTone(1050, 'sine', 0.06, 0.35);
+      // Estática de rádio
+      setTimeout(() => {
+        const buf = c.createBuffer(1, c.sampleRate * 0.25, c.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * 0.6;
+        const s = c.createBufferSource(), g = c.createGain();
+        const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1200; f.Q.value = 0.5;
+        s.buffer = buf; s.connect(f); f.connect(g); g.connect(c.destination);
+        g.gain.setValueAtTime(0.18, c.currentTime);
+        g.gain.linearRampToValueAtTime(0.12, c.currentTime + 0.1);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.25);
+        s.start(); s.stop(c.currentTime + 0.3);
+      }, 100);
+      // Bip de confirmação de rádio
+      setTimeout(() => { playTone(1050, 'sine', 0.04, 0.3); playTone(1050, 'sine', 0.04, 0.3, 0.07); }, 420);
+    } catch(e){}
+  },
+
+  // ⚡ ELETRICISTA — faísca elétrica / choque
+  eletrica: () => {
+    try {
+      const c = getCtx();
+      // Clique de faísca (ruído impulsivo)
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const buf = c.createBuffer(1, c.sampleRate * 0.04, c.sampleRate);
+          const d = buf.getChannelData(0);
+          for (let j = 0; j < d.length; j++) d[j] = (Math.random() * 2 - 1) * Math.exp(-j / (d.length * 0.2));
+          const s = c.createBufferSource(), g = c.createGain();
+          const f = c.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 2000;
+          s.buffer = buf; s.connect(f); f.connect(g); g.connect(c.destination);
+          g.gain.setValueAtTime(0.5 - i * 0.12, c.currentTime);
+          s.start(); s.stop(c.currentTime + 0.05);
+        }, i * 80);
+      }
+      // Zumbido elétrico de fundo
+      setTimeout(() => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sawtooth'; o.frequency.value = 60;
+        g.gain.setValueAtTime(0.15, c.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.3);
+        o.start(); o.stop(c.currentTime + 0.35);
+      }, 50);
+    } catch(e){}
+  },
+
+  // 🏗 ARMADOR/OBRA — ferro batendo em ferro (ping metálico)
+  martelo: () => {
+    try {
+      const c = getCtx();
+      // Impacto inicial grave
+      playNoise(0.04, 0.5);
+      // Ressonância metálica
+      [800, 1200, 1600, 2100].forEach((freq, i) => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sine'; o.frequency.value = freq;
+        g.gain.setValueAtTime(0.12 - i*0.02, c.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.5 - i*0.05);
+        o.start(c.currentTime + 0.01);
+        o.stop(c.currentTime + 0.55);
+      });
+    } catch(e){}
+  },
+
+  // 💻 TI — teclado mecânico digitando
+  digital: () => {
+    try {
+      const c = getCtx();
+      const tempos = [0, 0.07, 0.13, 0.19, 0.24, 0.28];
+      tempos.forEach(t => {
+        const buf = c.createBuffer(1, c.sampleRate * 0.03, c.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < d.length; i++) d[i] = (Math.random()*2-1) * Math.exp(-i/(d.length*0.15));
+        const s = c.createBufferSource(), g = c.createGain();
+        const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 3000 + Math.random()*1000; f.Q.value = 2;
+        s.buffer = buf; s.connect(f); f.connect(g); g.connect(c.destination);
+        g.gain.setValueAtTime(0.25, c.currentTime + t);
+        s.start(c.currentTime + t);
+        s.stop(c.currentTime + t + 0.04);
+      });
+      // Bip de "enter" no final
+      setTimeout(() => playTone(880, 'sine', 0.06, 0.15), 380);
+    } catch(e){}
+  },
+
+  // 🇩🇪 ALEMANHA — sino de catedral europeia
+  sino: () => {
+    try {
+      const c = getCtx();
+      // Sino grave com harmônicos
+      [[220, 0.35], [440, 0.25], [550, 0.15], [660, 0.1], [880, 0.08]].forEach(([freq, vol], i) => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sine'; o.frequency.value = freq;
+        g.gain.setValueAtTime(vol, c.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 1.5 - i*0.1);
+        o.start(c.currentTime + 0.01);
+        o.stop(c.currentTime + 1.6);
+      });
+      // Segundo toque menor
+      setTimeout(() => {
+        [[293, 0.2], [587, 0.12]].forEach(([freq, vol]) => {
+          const o = c.createOscillator(), g = c.createGain();
+          o.connect(g); g.connect(c.destination);
+          o.type = 'sine'; o.frequency.value = freq;
+          g.gain.setValueAtTime(vol, c.currentTime + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 1.2);
+          o.start(c.currentTime + 0.01); o.stop(c.currentTime + 1.3);
+        });
+      }, 700);
+    } catch(e){}
+  },
+
+  // 🎓 FORMAÇÃO/DIPLOMA — fanfarra de formatura
+  diploma: () => {
+    try {
+      // Sol-Sol-Sol-Dó ascendente (fanfarra clássica)
+      const notas = [
+        [392,0],[392,0.18],[392,0.36],[523,0.54],
+        [440,0.78],[440,0.96],[523,1.14]
+      ];
+      notas.forEach(([f,t]) => {
+        playTone(f, 'triangle', 0.2, 0.28, t);
+        playTone(f*2, 'sine', 0.06, 0.18, t+0.01);
+      });
+    } catch(e){}
+  },
+
+  // 🎖 RESERVISTA — corneta militar (toque de silêncio/alvorada simplificado)
+  militar: () => {
+    try {
+      // Toque de corneta: Dó-Mi-Sol-Dó
+      [[262,0],[330,0.2],[392,0.4],[524,0.65],[392,0.9],[330,1.1]].forEach(([f,t]) => {
+        playTone(f, 'triangle', 0.22, 0.3, t);
+      });
+    } catch(e){}
+  },
+
+  // 🏢 EMPRESA — caixa registradora "ding" + impressora
+  caixa: () => {
+    try {
+      // Ding da caixa
+      playTone(1760, 'sine', 0.08, 0.35);
+      playTone(2093, 'sine', 0.12, 0.3, 0.06);
+      playTone(1318, 'sine', 0.2, 0.4, 0.12);
+      // Som de impressora (cliques rápidos)
+      setTimeout(() => {
+        [0,40,80,120,160].forEach(t => setTimeout(() => playNoise(0.02, 0.15), t));
+      }, 350);
+    } catch(e){}
+  },
+
+  // 🎓 ADS/UNIPAR — sino de universidade
+  universidade: () => {
+    try {
+      [[523,0.3],[659,0.2],[784,0.15],[1047,0.1]].forEach(([f,v],i) => {
+        const c = getCtx();
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sine'; o.frequency.value = f;
+        g.gain.setValueAtTime(v, c.currentTime + i*0.15);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + i*0.15 + 0.8);
+        o.start(c.currentTime + i*0.15);
+        o.stop(c.currentTime + i*0.15 + 0.85);
+      });
+    } catch(e){}
+  },
+
+  // ✅ STATUS DISPONÍVEL — notificação positiva
+  disponivel: () => {
+    try {
+      playTone(523, 'sine', 0.1, 0.2);
+      playTone(659, 'sine', 0.1, 0.18, 0.1);
+      playTone(784, 'sine', 0.12, 0.25, 0.2);
+      playTone(1047, 'sine', 0.1, 0.3, 0.32);
+    } catch(e){}
+  },
+
+  // Navegação entre abas
+  tab: () => { playTone(440, 'sine', 0.08, 0.15); playTone(554, 'sine', 0.06, 0.1, 0.07); },
+
+  // Abrir card genérico
+  card: () => { playTone(380, 'sine', 0.07, 0.12); playTone(500, 'sine', 0.08, 0.1, 0.06); },
+
+  // Fechar
+  fechar: () => { playTone(440, 'sine', 0.05, 0.08); playTone(330, 'sine', 0.06, 0.08, 0.06); },
+
+  // Sucesso
+  sucesso: () => { [523,659,784,1047].forEach((f,i) => playTone(f,'sine',0.15,0.2,i*0.09)); },
+
+  // Clique simples
+  click: () => { playTone(520, 'sine', 0.05, 0.1); },
+};
+
+// ── Escolher som por contexto da experiência ──
+function somExperiencia(icone, cargo) {
+  const c = cargo.toLowerCase();
+  if (icone==='🚗' || c.includes('motorist') || c.includes('uber')) return sons.carro;
+  if (c.includes('vigilant') || c.includes('escolta') || c.includes('porteiro') || c.includes('aeroporto') || c.includes('agente')) return sons.apito;
+  if (c.includes('eletric') || c.includes('pintura')) return sons.eletrica;
+  if (c.includes('armador') || c.includes('obra') || c.includes('demolid') || c.includes('apontador')) return sons.martelo;
+  if (c.includes('ti') || c.includes('informát') || c.includes('tecnico') || c.includes('computad')) return sons.digital;
+  if (c.includes('produção') || c.includes('repositor') || c.includes('auxiliar')) return sons.click;
+  return sons.card;
+}
+
+// ── Som por aba ──
+function somAba(id) {
+  const mapa = {
+    inicio: sons.disponivel,
+    experiencia: sons.card,
+    formacao: sons.diploma,
+    cursos: sons.digital,
+    perfil: sons.sino,
+    dm: sons.caixa,
+  };
+  return mapa[id] || sons.tab;
+}
+
+// ── Partículas customizadas ──
+function spawnParticles(x, y, color='#1e88e5', count=8, shape='circle') {
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const angle = (i / count) * Math.PI * 2 + Math.random()*0.3;
+    const dist = 35 + Math.random() * 50;
+    const size = 5 + Math.random() * 6;
+    const emoji = shape !== 'circle' ? shape : null;
+    if (emoji) {
+      p.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${size*2}px;
+        pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+        transition:all 0.7s ease-out;opacity:1;`;
+      p.textContent = emoji;
+    } else {
+      p.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;
+        background:${color};border-radius:50%;pointer-events:none;z-index:9999;
+        transform:translate(-50%,-50%);transition:all 0.65s ease-out;opacity:1;`;
+    }
+    document.body.appendChild(p);
+    requestAnimationFrame(() => {
+      p.style.transform = `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px)) scale(0) rotate(${Math.random()*360}deg)`;
+      p.style.opacity = '0';
+    });
+    setTimeout(() => p.remove(), 750);
+  }
+}
+
+// ── Spawn de emojis temáticos ──
+function spawnEmojis(x, y, emojis, count=4) {
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const em = emojis[i % emojis.length];
+    const offsetX = (Math.random() - 0.5) * 80;
+    p.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${18+Math.random()*10}px;
+      pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+      transition:all 0.8s cubic-bezier(0.22,1,0.36,1);opacity:1;`;
+    p.textContent = em;
+    document.body.appendChild(p);
+    setTimeout(() => {
+      p.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% - ${60+Math.random()*40}px)) scale(0.5)`;
+      p.style.opacity = '0';
+    }, 20 + i*60);
+    setTimeout(() => p.remove(), 900);
+  }
+}
+
+// ── Flash de cor no card ──
+function flashCard(el, anim, dur=600) {
+  el.style.animation = `${anim} ${dur}ms ease`;
+  setTimeout(() => el.style.animation = '', dur);
+}
+
+// ── Ripple ──
+function ripple(el, color='rgba(30,136,229,0.25)') {
+  const r = document.createElement('span');
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 1.5;
+  r.style.cssText = `position:absolute;left:50%;top:50%;width:${size}px;height:${size}px;
+    background:${color};border-radius:50%;transform:translate(-50%,-50%) scale(0);
+    animation:rippleAnim 0.5s ease-out forwards;pointer-events:none;z-index:10;`;
+  el.style.position = el.style.position || 'relative';
+  el.style.overflow = 'hidden';
+  el.appendChild(r);
+  setTimeout(() => r.remove(), 600);
+}
+
+function shake(el) { el.style.animation='shakeAnim 0.4s ease'; setTimeout(()=>el.style.animation='',500); }
+function bounce(el) { el.style.animation='bounceAnim 0.4s ease'; setTimeout(()=>el.style.animation='',450); }
+function wobble(el) { el.style.animation='wobble 0.5s ease'; setTimeout(()=>el.style.animation='',550); }
+function zoomPulse(el) { el.style.animation='zoomPulse 0.4s ease'; setTimeout(()=>el.style.animation='',450); }
+function electricAnim(el) { el.style.animation='electricFlash 0.5s ease'; setTimeout(()=>el.style.animation='',550); }
+function militarAnim(el) { el.style.animation='militarShake 0.5s ease'; setTimeout(()=>el.style.animation='',550); }
+
+// ── Animação temática por tipo de card ──
+function animarCard(el, tipo, cx, cy) {
+  const r = el.getBoundingClientRect();
+  const x = cx || r.left + r.width/2;
+  const y = cy || r.top + r.height/2;
+
+  if (tipo === 'carro') {
+    flashCard(el, 'flashYellow');
+    spawnEmojis(x, y, ['🚗','💨','🛣️','⚡'], 4);
+    ripple(el, 'rgba(245,158,11,0.3)');
+  } else if (tipo === 'vigilante') {
+    flashCard(el, 'flashRed');
+    spawnEmojis(x, y, ['🛡','📻','🚨','👮'], 4);
+    ripple(el, 'rgba(239,68,68,0.25)');
+  } else if (tipo === 'eletrica') {
+    electricAnim(el);
+    spawnEmojis(x, y, ['⚡','🔌','💡','⚡'], 5);
+    spawnParticles(x, y, '#fbbf24', 8);
+  } else if (tipo === 'armador') {
+    flashCard(el, 'flashOrange');
+    spawnEmojis(x, y, ['🏗','🔨','⚙️','🧱'], 4);
+    ripple(el, 'rgba(249,115,22,0.25)');
+  } else if (tipo === 'alemanha') {
+    flashCard(el, 'flashBlue');
+    spawnEmojis(x, y, ['🇩🇪','🔔','✈️','🌍'], 4);
+    ripple(el, 'rgba(99,102,241,0.3)');
+    el.style.animation = 'glowGreen 0.8s ease';
+    setTimeout(()=>el.style.animation='',900);
+  } else if (tipo === 'formacao') {
+    flashCard(el, 'flashBlue');
+    spawnEmojis(x, y, ['🎓','📚','🏫','🌟'], 5);
+    ripple(el, 'rgba(139,92,246,0.3)');
+    bounce(el);
+  } else if (tipo === 'militar') {
+    militarAnim(el);
+    spawnEmojis(x, y, ['🎖','🇧🇷','⚔️','🪖'], 4);
+    spawnParticles(x, y, '#6b7280', 8);
+  } else if (tipo === 'empresa') {
+    flashCard(el, 'flashGreen');
+    spawnEmojis(x, y, ['🏢','💼','💰','📋'], 4);
+    ripple(el, 'rgba(16,185,129,0.3)');
+  } else if (tipo === 'ti') {
+    flashCard(el, 'flashBlue');
+    spawnEmojis(x, y, ['💻','⌨️','🖥️','🔧'], 4);
+    ripple(el, 'rgba(30,136,229,0.3)');
+    wobble(el);
+  } else if (tipo === 'disponivel') {
+    zoomPulse(el);
+    spawnEmojis(x, y, ['✅','🌟','💚','🎯'], 5);
+    spawnParticles(x, y, '#10b981', 12);
+  } else {
+    bounce(el);
+    ripple(el);
+    spawnParticles(x, y, '#1e88e5', 6);
+  }
+}
+
+// CSS das animações
+const style = document.createElement('style');
+style.textContent = `
+@keyframes rippleAnim { to { transform:translate(-50%,-50%) scale(1); opacity:0; } }
+@keyframes shakeAnim { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes bounceAnim { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 70%{transform:translateY(-4px)} }
+@keyframes slideInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInScale { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
+@keyframes pulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(30,136,229,0)} 50%{box-shadow:0 0 0 12px rgba(30,136,229,0.2)} }
+@keyframes flashYellow { 0%,100%{background:inherit} 30%{background:rgba(245,158,11,0.25)} }
+@keyframes flashBlue { 0%,100%{background:inherit} 30%{background:rgba(99,102,241,0.25)} }
+@keyframes flashGreen { 0%,100%{background:inherit} 30%{background:rgba(16,185,129,0.25)} }
+@keyframes flashRed { 0%,100%{background:inherit} 30%{background:rgba(239,68,68,0.2)} }
+@keyframes flashOrange { 0%,100%{background:inherit} 30%{background:rgba(249,115,22,0.25)} }
+@keyframes zoomPulse { 0%,100%{transform:scale(1)} 40%{transform:scale(1.04)} 70%{transform:scale(1.01)} }
+@keyframes wobble { 0%,100%{transform:rotate(0deg)} 20%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} 80%{transform:rotate(-2deg)} }
+@keyframes electricFlash { 0%,100%{filter:brightness(1)} 20%{filter:brightness(1.8) hue-rotate(20deg)} 40%{filter:brightness(1)} 60%{filter:brightness(1.6) hue-rotate(-20deg)} }
+@keyframes militarShake { 0%,100%{transform:translateX(0) rotate(0)} 15%{transform:translateX(-4px) rotate(-1deg)} 30%{transform:translateX(4px) rotate(1deg)} 45%{transform:translateX(-3px)} 60%{transform:translateX(3px)} 75%{transform:translateX(-2px)} }
+@keyframes starFloat { 0%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-150%) scale(0.3)} }
+@keyframes carMove { 0%{transform:translateX(-6px)} 50%{transform:translateX(6px)} 100%{transform:translateX(0)} }
+@keyframes glowGreen { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0)} 50%{box-shadow:0 0 20px 4px rgba(16,185,129,0.4)} }
+.tab-content.active { animation: slideInUp 0.3s ease; }
+.exp-body.open { animation: fadeInScale 0.25s ease; }
+.acord-body.open { animation: fadeInScale 0.2s ease; }
+.curso-card { transition: transform 0.15s, box-shadow 0.15s; }
+.curso-card:active { transform: scale(0.97); }
+`;
+document.head.appendChild(style);
+
+// ═══════════════════════════════════════════════════════════
+// HOOKS — interceptar funções existentes
+// ═══════════════════════════════════════════════════════════
+
+// 1. showTab — som + animação ao trocar aba
+const _showTab = showTab;
+window.showTab = function(id, btn) {
+  _showTab(id, btn);
+  somAba(id)();
+  if (btn) {
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    if (id==='formacao') animarCard(btn, 'formacao', cx, cy);
+    else if (id==='perfil') { spawnParticles(cx,cy,'#6366f1',6); ripple(btn); }
+    else if (id==='cursos') { spawnEmojis(cx,cy,['📚','✅','🎓'],3); ripple(btn,'rgba(16,185,129,0.2)'); }
+    else if (id==='experiencia') { spawnEmojis(cx,cy,['💼','⭐','🚀'],3); ripple(btn); }
+    else { ripple(btn); spawnParticles(cx,cy,'#1e88e5',5); }
+  }
+};
+
+// 2. toggleExp — animação temática por cargo
+const _toggleExp = toggleExp;
+window.toggleExp = function(idx) {
+  const e = experiencias[idx];
+  const body = document.getElementById('exp-body-'+idx);
+  const isOpen = body && body.classList.contains('open');
+  const card = document.getElementById('exp-card-'+idx);
+  const c = e.cargo.toLowerCase();
+
+  if (isOpen) { sons.fechar(); if(card) bounce(card); }
+  else {
+    somExperiencia(e.icone, e.cargo)();
+    if (card) {
+      const r = card.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + 40;
+      if (e.icone==='🚗') animarCard(card, 'carro', cx, cy);
+      else if (c.includes('vigilant')||c.includes('escolta')||c.includes('porteiro')||c.includes('agente')) animarCard(card,'vigilante',cx,cy);
+      else if (c.includes('eletric')||c.includes('pintura')) animarCard(card,'eletrica',cx,cy);
+      else if (c.includes('armador')||c.includes('obra')||c.includes('apontador')) animarCard(card,'armador',cx,cy);
+      else if (c.includes('produção')||c.includes('repositor')) { flashCard(card,'flashGreen'); ripple(card,'rgba(16,185,129,0.2)'); spawnEmojis(cx,cy,['📦','🛒'],2); }
+      else { bounce(card); ripple(card); spawnParticles(cx,cy,'#1e88e5',5); }
+    }
+  }
+  _toggleExp(idx);
+};
+
+// 3. abrirCurso — animação digital
+const _abrirCurso = abrirCurso;
+window.abrirCurso = function(idx) {
+  sons.digital();
+  _abrirCurso(idx);
+  const modal = document.getElementById('modal');
+  if (modal) modal.style.animation = 'fadeInScale 0.2s ease';
+};
+
+// 4. toggleAcord
+const _toggleAcord = toggleAcord;
+window.toggleAcord = function(id, header) {
+  const body = document.getElementById(id);
+  const isOpen = body && body.classList.contains('open');
+  isOpen ? sons.fechar() : sons.click();
+  if(header) { ripple(header,'rgba(30,136,229,0.15)'); if(!isOpen) bounce(header); }
+  _toggleAcord(id, header);
+};
+
+// 5. Cards de perfil com animação temática
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.pc').forEach(pc => {
+    const label = pc.querySelector('.pc-label');
+    if (!label) return;
+    const txt = label.textContent.toLowerCase();
+    pc.style.cursor = 'pointer';
+    pc.addEventListener('click', () => {
+      const r = pc.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      if (txt.includes('cnh') || txt.includes('motorist')) {
+        sons.carro(); animarCard(pc,'carro',cx,cy);
+      } else if (txt.includes('alem') || txt.includes('cidadan') || txt.includes('eu')) {
+        sons.sino(); animarCard(pc,'alemanha',cx,cy);
+      } else if (txt.includes('formaç') || txt.includes('ads') || txt.includes('unipar')) {
+        sons.universidade(); animarCard(pc,'formacao',cx,cy);
+      } else if (txt.includes('reserv') || txt.includes('militar')) {
+        sons.militar(); animarCard(pc,'militar',cx,cy);
+      } else if (txt.includes('empresa') || txt.includes('cnpj') || txt.includes('me')) {
+        sons.caixa(); animarCard(pc,'empresa',cx,cy);
+      } else if (txt.includes('vigil') || txt.includes('seguranç')) {
+        sons.apito(); animarCard(pc,'vigilante',cx,cy);
+      } else {
+        sons.click(); bounce(pc); ripple(pc);
+      }
+    });
+  });
+
+  // Status disponível — animação ao carregar
+  setTimeout(() => {
+    sons.disponivel();
+    const pill = document.querySelector('.status-pill');
+    if (pill) {
+      const r = pill.getBoundingClientRect();
+      animarCard(pill, 'disponivel', r.left+r.width/2, r.top+r.height/2);
+    }
+  }, 900);
+
+  // Cursos com animação ao clicar
+  document.addEventListener('click', e => {
+    const card = e.target.closest('.curso-card');
+    if (card) {
+      const r = card.getBoundingClientRect();
+      sons.digital();
+      spawnEmojis(r.left+r.width/2, r.top+20, ['💻','📚','✅','🎯'], 3);
+      zoomPulse(card);
+      ripple(card, 'rgba(30,136,229,0.2)');
+    }
+  });
+
+  // Tabs com ripple
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('mousedown', () => ripple(tab));
+  });
+
+  // Acordeão headers
+  document.querySelectorAll('.acord-header').forEach(h => {
+    h.addEventListener('mousedown', () => ripple(h,'rgba(30,136,229,0.15)'));
+  });
+});
+
+// ═══════════════════════════════════════
+// CARROSSEL DE ABAS COM SWIPE
+// ═══════════════════════════════════════
+const TAB_ORDER = ['inicio','experiencia','formacao','cursos','perfil','dm'];
+let currentTabIdx = 0;
+
+function getTabIdx(id) { return TAB_ORDER.indexOf(id); }
+
+function slideToTab(idx, playSound=true) {
+  if (idx < 0 || idx >= TAB_ORDER.length) return;
+  const track = document.getElementById('tabs-track');
+  if (!track) return;
+
+  // Remover active de todos
+  document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+
+  // Ativar o correto
+  const id = TAB_ORDER[idx];
+  const content = document.getElementById('tab-' + id);
+  if (content) content.classList.add('active');
+
+  // Mover track
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  currentTabIdx = idx;
+
+  // Ativar botão da tab
+  const tabBtns = document.querySelectorAll('.tab');
+  if (tabBtns[idx]) tabBtns[idx].classList.add('active');
+
+  // CONTROLAR HEADER — só aparece na aba Início
+  const header = document.querySelector('.hero-header');
+  if (header) {
+    if (id === 'inicio') {
+      header.classList.remove('compact');
+    } else {
+      header.classList.add('compact');
+    }
+  }
+
+  // Som se solicitado
+  if (playSound) somAba(id)();
+}
+
+// Substituir showTab pelo carrossel
+const __showTabOrig = window.showTab;
+window.showTab = function(id, btn) {
+  const idx = getTabIdx(id);
+  if (idx >= 0) {
+    slideToTab(idx, true);
+    if (btn) {
+      const r = btn.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      if (id==='formacao') animarCard(btn,'formacao',cx,cy);
+      else if (id==='perfil') { spawnParticles(cx,cy,'#6366f1',6); ripple(btn); }
+      else if (id==='cursos') { spawnEmojis(cx,cy,['📚','✅','🎓'],3); ripple(btn,'rgba(16,185,129,0.2)'); }
+      else if (id==='experiencia') { spawnEmojis(cx,cy,['💼','⭐','🚀'],3); ripple(btn); }
+      else { ripple(btn); spawnParticles(cx,cy,'#1e88e5',5); }
+    }
+  }
+};
+
+// ── SWIPE com touch ──
+(function() {
+  let startX = 0, startY = 0, dragging = false;
+  const viewport = document.querySelector('.tabs-viewport');
+  if (!viewport) return;
+
+  viewport.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    dragging = true;
+  }, {passive:true});
+
+  viewport.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    // Só previne scroll vertical se movimento horizontal dominante
+    if (Math.abs(dx) > Math.abs(dy) + 10) e.preventDefault();
+  }, {passive:false});
+
+  viewport.addEventListener('touchend', e => {
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0 && currentTabIdx < TAB_ORDER.length - 1) {
+        slideToTab(currentTabIdx + 1);
+      } else if (dx > 0 && currentTabIdx > 0) {
+        slideToTab(currentTabIdx - 1);
+      }
+    }
+  }, {passive:true});
+
+  // Swipe com mouse (desktop)
+  let mouseStartX = 0, mouseDragging = false;
+  viewport.addEventListener('mousedown', e => {
+    mouseStartX = e.clientX; mouseDragging = true;
+  });
+  window.addEventListener('mouseup', e => {
+    if (!mouseDragging) return;
+    mouseDragging = false;
+    const dx = e.clientX - mouseStartX;
+    if (Math.abs(dx) > 80) {
+      if (dx < 0 && currentTabIdx < TAB_ORDER.length - 1) slideToTab(currentTabIdx + 1);
+      else if (dx > 0 && currentTabIdx > 0) slideToTab(currentTabIdx - 1);
+    }
+  });
+})();
+
+// Inicializar carrossel no load
+document.addEventListener('DOMContentLoaded', () => {
+  slideToTab(0, false);
+  // Garantir que chartsDrawn seja resetado ao trocar de aba
+  const origShowTabForCharts = window.showTab;
+  window.showTab = function(id, btn) {
+    if (id !== 'inicio') chartsDrawn = false;
+    origShowTabForCharts(id, btn);
+    if (id === 'cursos') { renderCursos(); }
+  };
+});
+const _fecharModal = fecharModal;
+window.fecharModal = function() {
+  sons.fechar();
+  _fecharModal();
+};
+// ═══════════════════════════════════════
+
+// 🚨 SIRENE de segurança/vigilante (wee-woo rápido)
+sons.sirene = () => {
+  try {
+    const c = getCtx();
+    for (let rep = 0; rep < 2; rep++) {
+      const o = c.createOscillator(), g = c.createGain();
+      o.connect(g); g.connect(c.destination);
+      o.type = 'sawtooth';
+      o.frequency.setValueAtTime(800, c.currentTime + rep*0.35);
+      o.frequency.linearRampToValueAtTime(1100, c.currentTime + rep*0.35 + 0.15);
+      o.frequency.linearRampToValueAtTime(800, c.currentTime + rep*0.35 + 0.3);
+      g.gain.setValueAtTime(0.25, c.currentTime + rep*0.35);
+      g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + rep*0.35 + 0.33);
+      o.start(c.currentTime + rep*0.35);
+      o.stop(c.currentTime + rep*0.35 + 0.36);
+    }
+  } catch(e){}
+};
+
+// ✈️ AVIÃO — turbina acelerando
+sons.aviao = () => {
+  try {
+    const c = getCtx();
+    const o = c.createOscillator(), g = c.createGain();
+    const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 800;
+    o.connect(f); f.connect(g); g.connect(c.destination);
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(80, c.currentTime);
+    o.frequency.exponentialRampToValueAtTime(320, c.currentTime + 0.5);
+    o.frequency.exponentialRampToValueAtTime(180, c.currentTime + 0.8);
+    g.gain.setValueAtTime(0.0, c.currentTime);
+    g.gain.linearRampToValueAtTime(0.3, c.currentTime + 0.1);
+    g.gain.setValueAtTime(0.3, c.currentTime + 0.5);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.85);
+    o.start(); o.stop(c.currentTime + 0.9);
+    // Chiado de ar
+    playNoise(0.6, 0.07);
+  } catch(e){}
+};
+
+// 🔑 PORTA abrindo — rangido + click de fechadura
+sons.porta = () => {
+  try {
+    const c = getCtx();
+    // Click da fechadura
+    playNoise(0.04, 0.4);
+    setTimeout(() => {
+      // Rangido da porta (frequência oscilando)
+      const o = c.createOscillator(), g = c.createGain();
+      o.connect(g); g.connect(c.destination);
+      o.type = 'sine';
+      o.frequency.setValueAtTime(180, c.currentTime);
+      o.frequency.linearRampToValueAtTime(220, c.currentTime + 0.1);
+      o.frequency.linearRampToValueAtTime(160, c.currentTime + 0.25);
+      o.frequency.linearRampToValueAtTime(200, c.currentTime + 0.4);
+      g.gain.setValueAtTime(0.18, c.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.45);
+      o.start(); o.stop(c.currentTime + 0.5);
+    }, 80);
+  } catch(e){}
+};
+
+// 🎨 SPRAY de tinta — pressão de aerossol
+sons.spray = () => {
+  try {
+    const c = getCtx();
+    const buf = c.createBuffer(1, c.sampleRate * 0.5, c.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) {
+      const env = Math.sin((i / d.length) * Math.PI);
+      d[i] = (Math.random() * 2 - 1) * env * 0.8;
+    }
+    const s = c.createBufferSource(), g = c.createGain();
+    const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 4000; f.Q.value = 0.3;
+    s.buffer = buf; s.connect(f); f.connect(g); g.connect(c.destination);
+    g.gain.setValueAtTime(0.25, c.currentTime);
+    s.start(); s.stop(c.currentTime + 0.55);
+    // Clique de válvula inicial
+    playNoise(0.03, 0.5);
+  } catch(e){}
+};
+
+// 🪨 BRITADEIRA — pedra moendo (curto)
+sons.britadeira = () => {
+  try {
+    const c = getCtx();
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        playNoise(0.03, 0.5);
+        const o = c.createOscillator(), g = c.createGain();
+        o.connect(g); g.connect(c.destination);
+        o.type = 'sawtooth';
+        o.frequency.value = 60 + Math.random()*30;
+        g.gain.setValueAtTime(0.2, c.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.04);
+        o.start(); o.stop(c.currentTime + 0.05);
+      }, i * 55);
+    }
+  } catch(e){}
+};
+
+// 🦅 GUINDASTE — cabo de aço rangendo + motor
+sons.guindaste = () => {
+  try {
+    const c = getCtx();
+    // Motor elétrico grave
+    const o = c.createOscillator(), g = c.createGain();
+    o.connect(g); g.connect(c.destination);
+    o.type = 'sawtooth'; o.frequency.value = 50;
+    g.gain.setValueAtTime(0.2, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.6);
+    o.start(); o.stop(c.currentTime + 0.65);
+    // Rangido metálico do cabo
+    setTimeout(() => {
+      [400,350,420,380].forEach((f,i) => playTone(f,'sine',0.05,0.15,i*0.06));
+    }, 100);
+    playNoise(0.3, 0.12);
+  } catch(e){}
+};
+
+// 🛒 MERCADO — beep de código de barras + carrinho
+sons.mercado = () => {
+  try {
+    // Beep de leitor de código de barras
+    playTone(1800, 'sine', 0.06, 0.3);
+    setTimeout(() => playTone(1800, 'sine', 0.04, 0.25), 120);
+    // Som de carrinho rolando (ruído suave)
+    setTimeout(() => playNoise(0.3, 0.06), 250);
+  } catch(e){}
+};
+
+// 🌅 CLARIDADE — diploma/aprovação (fanfarra brilhante)
+sons.claridade = () => {
+  try {
+    // Acorde maior brilhante + shimmer
+    [[523,0],[659,0.05],[784,0.1],[1047,0.18],[1319,0.3]].forEach(([f,t]) => {
+      playTone(f, 'sine', 0.5-t*0.3, 0.2, t);
+    });
+    // Brilho de triângulo
+    setTimeout(() => {
+      playTone(2093, 'sine', 0.15, 0.1);
+      playTone(2637, 'sine', 0.12, 0.12, 0.08);
+    }, 400);
+  } catch(e){}
+};
+
+// 🥁 CORNETA MILITAR curta
+sons.corneta = () => {
+  try {
+    // Toque de corneta militar brasileiro (Sentido!)
+    [[392,0],[523,0.15],[659,0.3],[784,0.5],[659,0.7],[523,0.85]].forEach(([f,t]) => {
+      playTone(f, 'triangle', 0.18, 0.28, t);
+    });
+  } catch(e){}
+};
+
+// ═══════════════════════════════════════
+// HOOKS — STAT-CARDS DA ABA INÍCIO
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Status Disponível
+  const scStatus = document.getElementById('sc-status');
+  if (scStatus) scStatus.addEventListener('click', () => {
+    sons.disponivel();
+    const r = scStatus.getBoundingClientRect();
+    animarCard(scStatus, 'disponivel', r.left+r.width/2, r.top+r.height/2);
+  });
+
+  // ADS UNIPAR
+  const scForm = document.getElementById('sc-formacao');
+  if (scForm) scForm.addEventListener('click', () => {
+    sons.universidade();
+    const r = scForm.getBoundingClientRect();
+    animarCard(scForm, 'formacao', r.left+r.width/2, r.top+r.height/2);
+  });
+
+  // CNH — buzina
+  const scCnh = document.getElementById('sc-cnh');
+  if (scCnh) scCnh.addEventListener('click', () => {
+    sons.carro();
+    const r = scCnh.getBoundingClientRect();
+    animarCard(scCnh, 'carro', r.left+r.width/2, r.top+r.height/2);
+  });
+
+  // Cidadania Alemã — sino
+  const scCid = document.getElementById('sc-cidadania');
+  if (scCid) scCid.addEventListener('click', () => {
+    sons.sino();
+    const r = scCid.getBoundingClientRect();
+    animarCard(scCid, 'alemanha', r.left+r.width/2, r.top+r.height/2);
+  });
+
+  // Ensino Médio — claridade ao clicar
+  const cardEM = document.getElementById('card-ensino-medio');
+  if (cardEM) {
+    const origClick = cardEM.onclick;
+    cardEM.addEventListener('click', () => {
+      sons.claridade();
+      const r = cardEM.getBoundingClientRect();
+      spawnEmojis(r.left+r.width/2, r.top+20, ['🎓','✨','🌟','📜','🎉'], 5);
+      flashCard(cardEM, 'flashBlue', 700);
+      zoomPulse(cardEM);
+    });
+  }
+});
+
+// ═══════════════════════════════════════
+// ATUALIZAR somExperiencia com todos os sons novos
+// ═══════════════════════════════════════
+const _somExpOrig = somExperiencia;
+somExperiencia = function(icone, cargo) {
+  const c = cargo.toLowerCase();
+  if (icone==='🚗' || c.includes('motorist') || c.includes('uber')) return sons.carro;
+  if (c.includes('escolta') || c.includes('vigilant')) return sons.sirene;
+  if (c.includes('aeroporto') || c.includes('agente de proteção')) return sons.aviao;
+  if (c.includes('porteiro') || c.includes('portaria')) return sons.porta;
+  if (c.includes('pintura')) return sons.spray;
+  if (c.includes('eletric')) return sons.eletrica;
+  if (c.includes('armador') && c.includes('concreto')) return sons.martelo;
+  if (c.includes('armador') || c.includes('guindaste')) return sons.guindaste;
+  if (c.includes('apontador') || c.includes('lokotrack')) return sons.britadeira;
+  if (c.includes('ajudante') || c.includes('produção de obra')) return sons.martelo;
+  if (c.includes('repositor') || c.includes('mercadoria')) return sons.mercado;
+  return sons.card;
+};
+
+// Atualizar animação das experiências com novos tipos
+const _toggleExpFinal = window.toggleExp;
+window.toggleExp = function(idx) {
+  const e = experiencias[idx];
+  const body = document.getElementById('exp-body-'+idx);
+  const isOpen = body && body.classList.contains('open');
+  const card = document.getElementById('exp-card-'+idx);
+  const c = e.cargo.toLowerCase();
+
+  if (!isOpen && card) {
+    const r = card.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + 40;
+    if (c.includes('motorist') || e.icone==='🚗') {
+      sons.carro(); animarCard(card,'carro',cx,cy);
+    } else if (c.includes('escolta') || c.includes('vigilant')) {
+      sons.sirene(); flashCard(card,'flashRed'); spawnEmojis(cx,cy,['🚨','🛡','📻','👮'],4);
+    } else if (c.includes('aeroporto') || c.includes('agente de proteção')) {
+      sons.aviao(); flashCard(card,'flashBlue'); spawnEmojis(cx,cy,['✈️','🛫','🛬','🌍'],4);
+    } else if (c.includes('porteiro')) {
+      sons.porta(); flashCard(card,'flashOrange'); spawnEmojis(cx,cy,['🚪','🔑','🏢','👋'],4);
+    } else if (c.includes('pintura')) {
+      sons.spray(); spawnEmojis(cx,cy,['🎨','🖌️','💨','✨'],4); ripple(card,'rgba(249,115,22,0.3)');
+    } else if (c.includes('eletric')) {
+      sons.eletrica(); animarCard(card,'eletrica',cx,cy);
+    } else if (c.includes('armador')) {
+      sons.martelo(); flashCard(card,'flashOrange'); spawnEmojis(cx,cy,['🔧','⚙️','🏗','🔩'],4);
+    } else if (c.includes('apontador') || c.includes('lokotrack')) {
+      sons.britadeira(); spawnEmojis(cx,cy,['🪨','⛏️','💥','🏗'],4); ripple(card,'rgba(120,80,40,0.3)');
+    } else if (c.includes('ajudante') || c.includes('produção de obra')) {
+      sons.martelo(); spawnEmojis(cx,cy,['🔨','🧱','⚒️','🏚'],4); ripple(card,'rgba(249,115,22,0.25)');
+    } else if (c.includes('repositor') || c.includes('mercadoria')) {
+      sons.mercado(); flashCard(card,'flashGreen'); spawnEmojis(cx,cy,['🛒','📦','🏪','💳'],4);
+    } else {
+      sons.card(); bounce(card); ripple(card);
+    }
+  } else if (isOpen) {
+    sons.fechar(); if(card) bounce(card);
+  }
+  _toggleExpFinal(idx);
+};
+
+// ═══════════════════════════════════════
+// PERFIL — mesmos cards do início, mais reservista e empresa
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.pc').forEach(pc => {
+    // evitar duplicar listener
+    if (pc.dataset.animated) return;
+    pc.dataset.animated = '1';
+    const label = pc.querySelector('.pc-label');
+    if (!label) return;
+    const txt = label.textContent.toLowerCase();
+    pc.style.cursor = 'pointer';
+    pc.addEventListener('click', () => {
+      const r = pc.getBoundingClientRect();
+      const cx = r.left+r.width/2, cy = r.top+r.height/2;
+      if (txt.includes('cnh') || txt.includes('motorist')) {
+        sons.carro(); animarCard(pc,'carro',cx,cy);
+      } else if (txt.includes('alem') || txt.includes('cidadan') || txt.includes('eu')) {
+        sons.sino(); animarCard(pc,'alemanha',cx,cy);
+      } else if (txt.includes('formaç') || txt.includes('ads') || txt.includes('unipar')) {
+        sons.universidade(); animarCard(pc,'formacao',cx,cy);
+      } else if (txt.includes('reserv') || txt.includes('militar')) {
+        sons.corneta(); animarCard(pc,'militar',cx,cy);
+      } else if (txt.includes('empresa') || txt.includes('cnpj') || txt.includes('mei')) {
+        sons.caixa(); animarCard(pc,'empresa',cx,cy);
+      } else if (txt.includes('vigil') || txt.includes('seguranç')) {
+        sons.sirene(); animarCard(pc,'vigilante',cx,cy);
+      } else {
+        sons.click(); bounce(pc); ripple(pc);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
